@@ -7,7 +7,7 @@ Hello and welcome! My name is Vincent Pan.
 
 
 <figure>
-  <img alt="Vincent Pan" src="hhttps://media.licdn.com/dms/image/v2/D5603AQFsroAJP8WVwg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1674368654716?e=1737590400&v=beta&t=zAq4NSSzrIgT8QFozPh1pm9y9lgavjjO-wjyernJMhY" />
+  <img alt="Vincent Pan" src="https://media.licdn.com/dms/image/v2/D5603AQFsroAJP8WVwg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1674368654716?e=1737590400&v=beta&t=zAq4NSSzrIgT8QFozPh1pm9y9lgavjjO-wjyernJMhY" />
   <!-- <figcaption>
     Photo taken 
   </figcaption> -->
