@@ -19,7 +19,7 @@ Hello and welcome! My name is Vincent Pan.
 
 Currently based out of the San Francisco Bay Area 🌉. You can find me working in Menlo Park, California, or when I am visitng friends and family every now and again in Sydney, Australia 🐨.
 
-I am a graduate of with a Bachelors in Commerce / Science from the University of New South Wales, and am currently studying 📓 an Online Master of Science in Analystics at Georgia Tech, spending my time on personal projects 🎨 and working full time 💻.
+I am a graduate of with a Bachelors in Commerce / Science from the University of New South Wales, and an Online Master of Science in Analystics at Georgia Tech 📓, spending my time on personal projects 🎨 and working full time 💻.
 
 
 
