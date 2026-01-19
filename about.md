@@ -9,7 +9,7 @@ Hello and welcome! My name is Vincent Pan.
 <figure>
   <img alt="Vincent Pan"
     style="border-radius: 50%; width: 200px; height: 200px; object-fit: cover" 
-    src="https://media.licdn.com/dms/image/v2/D5603AQFsroAJP8WVwg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1674368654716?e=1770249600&v=beta&t=TLKiInECkefIoZw7BRT4QWPMti9Fe6pULl7BQ49r9V4" />
+    src="https://res.cloudinary.com/dusmuv0fc/image/upload/v1768780825/LinkedIn_byk4f2.jpg"/>
   <!-- <figcaption>
     Photo taken 
   </figcaption> -->
