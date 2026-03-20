@@ -59,8 +59,8 @@ permalink: /health/
 
         .checklist-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.25rem;
         }
 
         @media print {
@@ -165,7 +165,7 @@ permalink: /health/
             </div>
         </section>
 
-        <!-- Profile Selector (Enhanced with SVG Icons) -->
+        <!-- Profile Selector -->
         <div class="flex flex-col items-center mb-8 no-print">
             <p class="text-xs font-bold text-slate-400 uppercase mb-4 tracking-widest">Select Profile / 选择身份</p>
             <div class="bg-slate-200 p-2 rounded-3xl flex gap-2 shadow-inner">
@@ -226,13 +226,13 @@ permalink: /health/
         <div class="warning-banner p-4 rounded-xl mb-8 flex items-start gap-3 no-print">
             <i class="fas fa-pen-nib text-2xl"></i>
             <div>
-                <p class="font-bold">PLEASE DO NOT TYPE HERE / 请勿在此输入</p>
-                <p class="text-sm">This website is a visual guide. All fields are disabled. Please <b>print this</b> and write with a pen.</p>
-                <p class="text-xs mt-1 font-bold uppercase tracking-tight">本网页不保存数据。请打印此页面，并使用笔手写记录。</p>
+                <p class="font-bold uppercase tracking-tight">Hand-write Your Answers Only / 请仅通过手写记录</p>
+                <p class="text-sm">This website does not save data. Please <b>print this page</b> and use a pen to record information for your doctor.</p>
+                <p class="text-xs mt-1 italic font-bold">本网页不保存数据。请打印此页面，并使用笔手写记录，以便带去就诊。</p>
             </div>
         </div>
 
-        <!-- Section 3: Parent's Personal Medical History (Expanded Checklist) -->
+        <!-- Section 3: Parent's Personal Medical History (Fully Expanded) -->
         <section class="card p-6 md:p-8 mb-8 border-l-8 border-indigo-500">
             <div class="flex items-center gap-4 mb-6">
                 <div class="bg-indigo-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-200">
@@ -247,75 +247,104 @@ permalink: /health/
             <div class="checklist-grid">
                 <!-- 1. Cardio -->
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 border-b pb-2">1. Cardio & Blood / 心血管</h4>
-                    <div class="space-y-2 text-xs">
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Coronary Artery / 冠心病</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Hypertension / 高血压</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Hyperlipidemia / 高血脂</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Stroke / 中风</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Blood Clots / 血栓</label>
+                    <h4 class="text-xs font-bold text-indigo-700 uppercase tracking-widest mb-3 border-b border-indigo-100 pb-2">1. Cardio & Blood / 心血管与血液</h4>
+                    <div class="space-y-2 text-[11px]">
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Coronary Artery / 冠心病</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Hypertension / 高血压</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Hyperlipidemia / 高血脂</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Stroke / 中风</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Aneurysms / 动脉瘤</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Blood Disorders / 血液病</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Blood Clots (DVT) / 血栓</label>
                     </div>
                 </div>
 
                 <!-- 2. Cancer -->
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 border-b pb-2">2. Cancer / 癌症</h4>
-                    <div class="space-y-2 text-xs">
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Breast/Ovarian / 乳腺卵巢癌</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Colorectal / 结直肠癌</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Prostate / 前列腺癌</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Pancreatic / 胰腺癌</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Other / 其他</label>
+                    <h4 class="text-xs font-bold text-indigo-700 uppercase tracking-widest mb-3 border-b border-indigo-100 pb-2">2. Cancer / 癌症病史</h4>
+                    <div class="space-y-2 text-[11px]">
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Breast & Ovarian / 乳腺卵巢癌</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Colorectal (Polyps) / 结直肠癌</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Prostate Cancer / 前列腺癌</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Pancreatic Cancer / 胰腺癌</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Melanoma (Skin) / 黑色素瘤</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Leukemia/Lymphoma / 白血病</label>
                     </div>
                 </div>
 
                 <!-- 3. Endocrine -->
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 border-b pb-2">3. Metabolic / 代谢</h4>
-                    <div class="space-y-2 text-xs">
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Diabetes (Type 1/2) / 糖尿病</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Thyroid / 甲状腺疾病</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> PCOS / 多囊卵巢综合征</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Obesity / 肥胖症</label>
+                    <h4 class="text-xs font-bold text-indigo-700 uppercase tracking-widest mb-3 border-b border-indigo-100 pb-2">3. Metabolic / 内分泌与代谢</h4>
+                    <div class="space-y-2 text-[11px]">
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Diabetes (Type 1, 2) / 糖尿病</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Thyroid Disease / 甲状腺疾病</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> PCOS / 多囊卵巢综合征</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Obesity / 肥胖症</label>
                     </div>
                 </div>
 
                 <!-- 4. Neuro -->
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 border-b pb-2">4. Neuro/Mental / 神经与心理</h4>
-                    <div class="space-y-2 text-xs">
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Dementia / 痴呆症</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Parkinson's / 帕金森</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Mood Disorders / 情绪障碍</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Epilepsy / 癫痫</label>
+                    <h4 class="text-xs font-bold text-indigo-700 uppercase tracking-widest mb-3 border-b border-indigo-100 pb-2">4. Neuro & Mental / 神经与心理</h4>
+                    <div class="space-y-2 text-[11px]">
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Dementia (Alzheimer's) / 痴呆症</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Parkinson's / 帕金森病</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Epilepsy (Seizures) / 癫痫</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Mood Disorders / 情绪障碍</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Psychotic (Schiz.) / 精神分裂</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Addiction (Alcohol) / 酗酒</label>
                     </div>
                 </div>
 
                 <!-- 5. Autoimmune -->
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 border-b pb-2">5. Autoimmune / 自身免疫</h4>
-                    <div class="space-y-2 text-xs">
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Arthritis/Gout / 关节炎/痛风</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Digestive (IBD) / 肠道炎症</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Skin (Eczema) / 皮肤/湿疹</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Lupus / 红斑狼疮</label>
+                    <h4 class="text-xs font-bold text-indigo-700 uppercase tracking-widest mb-3 border-b border-indigo-100 pb-2">5. Autoimmune / 自身免疫</h4>
+                    <div class="space-y-2 text-[11px]">
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Arthritis / 关节炎 (痛风)</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Digestive (Crohn's) / 肠道炎症</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Skin (Eczema) / 皮肤病 (湿疹)</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Lupus (SLE) / 红斑狼疮</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Multiple Sclerosis / 硬化症</label>
                     </div>
                 </div>
 
-                <!-- 6-8. Others -->
+                <!-- 6. Respiratory -->
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 border-b pb-2">6-8. Organs & Others / 器官与其他</h4>
-                    <div class="space-y-2 text-xs">
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Asthma/COPD / 哮喘/肺病</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Kidney Disease / 肾脏疾病</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Liver/Cirrhosis / 肝脏疾病</label>
-                        <label class="flex items-center gap-2 opacity-50"><input type="checkbox" disabled> Vision/Hearing / 视力/听力损失</label>
+                    <h4 class="text-xs font-bold text-indigo-700 uppercase tracking-widest mb-3 border-b border-indigo-100 pb-2">6. Respiratory / 呼吸系统</h4>
+                    <div class="space-y-2 text-[11px]">
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Asthma / 哮喘</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> COPD / 慢性阻塞性肺病</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Severe Allergies / 严重过敏</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Cystic Fibrosis / 囊性纤维化</label>
+                    </div>
+                </div>
+
+                <!-- 7. Sensory -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <h4 class="text-xs font-bold text-indigo-700 uppercase tracking-widest mb-3 border-b border-indigo-100 pb-2">7. Sensory & Organ / 感官与器官</h4>
+                    <div class="space-y-2 text-[11px]">
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Vision Loss / 视力丧失 (青光眼)</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Hearing Loss / 听力丧失</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Kidney Disease / 肾脏疾病</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Liver Disease / 肝脏疾病</label>
+                    </div>
+                </div>
+
+                <!-- 8. Pregnancy -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <h4 class="text-xs font-bold text-indigo-700 uppercase tracking-widest mb-3 border-b border-indigo-100 pb-2">8. Pregnancy / 怀孕与发育</h4>
+                    <div class="space-y-2 text-[11px]">
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Infertility / 不孕不育 (IVF?)</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Miscarriages / 反复流产 (3+)</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Birth Defects / 出生缺陷</label>
+                        <label class="flex items-start gap-2"><input type="checkbox" disabled class="mt-0.5"> Developmental Delay / 发育迟缓</label>
                     </div>
                 </div>
             </div>
-            <div class="mt-6 p-4 bg-slate-100/50 rounded-xl">
+            
+            <div class="mt-6 p-4 bg-slate-100 rounded-xl">
                 <label class="text-[10px] font-bold text-slate-400 uppercase">Personal Health Notes / 个人健康备注</label>
-                <textarea disabled rows="2" class="w-full bg-transparent border-b border-slate-300 mt-2 text-sm" placeholder="List any allergies, past surgeries, or current medications here..."></textarea>
+                <textarea disabled rows="2" class="w-full bg-transparent border-b border-slate-300 mt-2 text-sm" placeholder="List any past surgeries, or current medications here..."></textarea>
             </div>
         </section>
 
@@ -406,11 +435,11 @@ permalink: /health/
                     </div>
                 </div>
 
-                <!-- Deep Inquiry Reference -->
+                <!-- Deep Inquiry Reference (FULLY RESTORED) -->
                 <div class="bg-slate-900 text-white p-6 rounded-2xl border shadow-xl">
                     <h4 class="text-lg font-bold mb-4 flex items-center gap-3">
-                        <i class="fas fa-clipboard-list text-blue-400"></i>
-                        Investigation Checklist / 详细疾病查询参考
+                        <i class="fas fa-search-location text-blue-400"></i>
+                        Full Investigative Checklist / 详细家族疾病查询清单
                     </h4>
                     <p class="text-xs text-slate-400 mb-6 italic">Use this list as a reference when interviewing relatives about the categories above.<br>在询问亲属时，请参考此清单了解上述各类别的具体疾病内容。</p>
                     
@@ -418,23 +447,90 @@ permalink: /health/
                         <details class="bg-slate-800 p-3 rounded-xl border border-slate-700">
                             <summary class="text-xs font-bold uppercase tracking-widest text-blue-400">1. Cardiovascular & Blood / 心血管与血液</summary>
                             <ul class="mt-3 text-[11px] space-y-1 text-slate-300">
-                                <li>Coronary Artery / 冠心病 (Age?)</li>
+                                <li>Coronary Artery Disease / 冠心病 (Inc. Heart Attack)</li>
                                 <li>Hypertension / 高血压</li>
-                                <li>Stroke/Aneurysms / 中风/动脉瘤</li>
-                                <li>Blood Disorders / 血液病 (贫血/血友病)</li>
+                                <li>Hyperlipidemia / 高血脂 (Cholesterol/Triglycerides)</li>
+                                <li>Stroke / 中风 (Ischemic or Hemorrhagic)</li>
+                                <li>Aneurysms / 动脉瘤 (Abdominal or Cerebral)</li>
+                                <li>Blood Disorders / 血液病 (Anemia/Hemophilia)</li>
+                                <li>Deep Vein Thrombosis (DVT) / 深静脉血栓</li>
                             </ul>
                         </details>
+
                         <details class="bg-slate-800 p-3 rounded-xl border border-slate-700">
                             <summary class="text-xs font-bold uppercase tracking-widest text-blue-400">2. Cancer History / 癌症病史</summary>
                             <ul class="mt-3 text-[11px] space-y-1 text-slate-300">
-                                <li>Breast & Ovarian / 乳腺卵巢癌</li>
-                                <li>Colorectal / 结直肠癌 (Polyps?)</li>
-                                <li>Prostate/Pancreatic / 前列腺/胰腺癌</li>
-                                <li>Leukemia/Lymphoma / 白血病/淋巴瘤</li>
+                                <li>Breast & Ovarian / 乳腺癌及卵巢癌 (Esp. before age 50)</li>
+                                <li>Colorectal / 结直肠癌 (Inc. Polyps)</li>
+                                <li>Prostate Cancer / 前列腺癌</li>
+                                <li>Pancreatic Cancer / 胰腺癌</li>
+                                <li>Melanoma / 黑色素瘤 (or recurring skin cancers)</li>
+                                <li>Leukemia or Lymphoma / 白血病或淋巴瘤</li>
                             </ul>
                         </details>
-                        <!-- Other categories available for deep dive reference -->
-                        <div class="text-[10px] text-slate-500 italic p-2">Check all categories: Neuro, Metabolic, Autoimmune, Sensory, Respiratory, Pregnancy.</div>
+
+                        <details class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <summary class="text-xs font-bold uppercase tracking-widest text-blue-400">3. Endocrine & Metabolic / 内分泌与代谢</summary>
+                            <ul class="mt-3 text-[11px] space-y-1 text-slate-300">
+                                <li>Diabetes / 糖尿病 (Type 1, 2, or Gestational)</li>
+                                <li>Thyroid Disease / 甲状腺疾病 (Goiters/Hyper/Hypo)</li>
+                                <li>PCOS / 多囊卵巢综合征</li>
+                                <li>Obesity / 肥胖症 (Metabolic Syndrome)</li>
+                            </ul>
+                        </details>
+
+                        <details class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <summary class="text-xs font-bold uppercase tracking-widest text-blue-400">4. Neuro & Mental Health / 神经与心理</summary>
+                            <ul class="mt-3 text-[11px] space-y-1 text-slate-300">
+                                <li>Dementia / 痴呆症 (Alzheimer's or Vascular)</li>
+                                <li>Movement Disorders / 运动障碍 (Parkinson's)</li>
+                                <li>Seizure Disorders / 癫痫</li>
+                                <li>Mood Disorders / 情绪障碍 (Depression/Anxiety)</li>
+                                <li>Psychotic Disorders / 精神分裂症</li>
+                                <li>Addiction / 成瘾 (Alcoholism)</li>
+                            </ul>
+                        </details>
+
+                        <details class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <summary class="text-xs font-bold uppercase tracking-widest text-blue-400">5. Autoimmune & Inflamm. / 自身免疫与炎症</summary>
+                            <ul class="mt-3 text-[11px] space-y-1 text-slate-300">
+                                <li>Arthritis / 关节炎 (Gout/Rheumatoid/Osteo)</li>
+                                <li>Digestive Issues / 消化系统 (Crohn's/Colitis)</li>
+                                <li>Skin Conditions / 皮肤病 (Eczema/Psoriasis)</li>
+                                <li>Lupus (SLE) / 红斑狼疮</li>
+                                <li>Multiple Sclerosis (MS) / 多发性硬化症</li>
+                            </ul>
+                        </details>
+
+                        <details class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <summary class="text-xs font-bold uppercase tracking-widest text-blue-400">6. Respiratory & Allergy / 呼吸与过敏</summary>
+                            <ul class="mt-3 text-[11px] space-y-1 text-slate-300">
+                                <li>Asthma / 哮喘 (Childhood or Adult-onset)</li>
+                                <li>COPD / 慢性阻塞性肺病 (Emphysema/Bronchitis)</li>
+                                <li>Severe Allergies / 严重过敏 (Food/Medication)</li>
+                                <li>Cystic Fibrosis / 囊性纤维化</li>
+                            </ul>
+                        </details>
+
+                        <details class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <summary class="text-xs font-bold uppercase tracking-widest text-blue-400">7. Sensory & Organ Health / 感官与器官</summary>
+                            <ul class="mt-3 text-[11px] space-y-1 text-slate-300">
+                                <li>Vision Loss / 视力丧失 (Glaucoma/Macular/Cataracts)</li>
+                                <li>Hearing Loss / 听力丧失 (Early-onset)</li>
+                                <li>Kidney Disease / 肾脏疾病 (PKD/Failure)</li>
+                                <li>Liver Disease / 肝脏疾病 (Cirrhosis/Iron overload)</li>
+                            </ul>
+                        </details>
+
+                        <details class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <summary class="text-xs font-bold uppercase tracking-widest text-blue-400">8. Pregnancy & Development / 怀孕与发育</summary>
+                            <ul class="mt-3 text-[11px] space-y-1 text-slate-300">
+                                <li>Infertility / 不孕不育 (History of IVF)</li>
+                                <li>Miscarriages / 反复流产 (3 or more)</li>
+                                <li>Birth Defects / 出生缺陷 (Heart/Cleft Palate)</li>
+                                <li>Developmental Delay / 发育迟缓 (Autism/Downs)</li>
+                            </ul>
+                        </details>
                     </div>
                 </div>
             </div>
@@ -443,7 +539,7 @@ permalink: /health/
         <!-- Section 5: Results Tracker -->
         <div class="card p-6 md:p-8 mb-12 border-l-8 border-orange-500">
             <h3 class="text-xl font-bold text-slate-800 mb-2">GP Visit: Results Tracker</h3>
-            <p class="text-sm text-gray-600 mb-6 italic">Record your blood results from the clinic here.</p>
+            <p class="text-sm text-gray-600 mb-6 italic">Hand-write your blood results from the clinic here.</p>
             
             <div class="space-y-4">
                 <div class="flex justify-between items-center border-b pb-2">
