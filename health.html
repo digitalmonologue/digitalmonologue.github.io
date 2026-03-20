@@ -1,0 +1,225 @@
+---
+layout: null
+permalink: /health/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Health Guide | 家族健康指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+SC:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .card {
+            background: white;
+            border-radius: 1.25rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-toggle {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .script-box {
+            background: #f8fafc;
+            border-left: 5px solid #3b82f6;
+        }
+
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; padding: 0; }
+            .card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-10">
+
+    <div class="max-w-3xl mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <div class="inline-block bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-bold mb-3 uppercase tracking-wider">Australia Medicare Guide</div>
+            <h1 class="text-3xl md:text-4xl font-extrabold mb-2 text-slate-900">Family Health History</h1>
+            <h2 class="text-2xl font-bold text-blue-600 mb-4">家族健康历史与就诊指南</h2>
+            <p class="text-slate-600 max-w-md mx-auto">A simple guide for your next GP check-up in Australia.</p>
+            <p class="text-slate-400 italic text-sm">一份帮助您在澳洲进行全科医生检查的简单指南。</p>
+        </header>
+
+        <!-- Profile Selector -->
+        <div class="flex justify-center mb-10 no-print">
+            <div class="bg-slate-200 p-1.5 rounded-2xl flex gap-1 shadow-inner">
+                <button id="tab-female" onclick="setProfile('female')" class="btn-toggle flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold bg-white text-blue-600 shadow-sm">
+                    <i class="fas fa-venus text-pink-500"></i>
+                    <span>Mother 母亲</span>
+                </button>
+                <button id="tab-male" onclick="setProfile('male')" class="btn-toggle flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-slate-600 hover:bg-white/50">
+                    <i class="fas fa-mars text-blue-500"></i>
+                    <span>Father 父亲</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Section 1: The Doctor's Script -->
+        <div class="card p-6 md:p-8 mb-8">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="bg-blue-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-200">
+                    <i class="fas fa-file-medical text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800">For the Doctor (English)</h3>
+                    <p class="text-slate-500 text-sm italic">请把这段话给医生看，或直接读给他们听</p>
+                </div>
+            </div>
+
+            <div class="script-box p-6 rounded-xl mb-6">
+                <p class="text-lg font-semibold text-slate-900 leading-relaxed mb-4">
+                    "I haven't had a check-up in a long time. My son is a Data Scientist and is helping me organize our family medical history. Since I am of Chinese descent and over 50, I would like to request the following screenings covered by Medicare:"
+                </p>
+                <hr class="border-slate-200 my-4">
+                <p class="text-slate-700 italic">
+                    “我很久没做身体检查了。我的儿子是一名数据科学家，他正在帮我整理家族病史。考虑到我是华裔且年龄超过50岁，我希望进行以下受 Medicare 资助的检查：”
+                </p>
+            </div>
+
+            <ul class="space-y-4">
+                <li class="flex gap-4 p-3 hover:bg-slate-50 rounded-lg transition-colors">
+                    <div class="text-green-500 mt-1"><i class="fas fa-check-circle"></i></div>
+                    <div>
+                        <p class="font-bold text-slate-800">Heart Health Check (MBS Item 699)</p>
+                        <p class="text-sm text-slate-500 italic">心脏健康检查 - 检查血压、胆固醇水平及心血管风险。</p>
+                    </div>
+                </li>
+                <li class="flex gap-4 p-3 hover:bg-slate-50 rounded-lg transition-colors">
+                    <div class="text-green-500 mt-1"><i class="fas fa-check-circle"></i></div>
+                    <div>
+                        <p class="font-bold text-slate-800">Diabetes Screening (HbA1c Test)</p>
+                        <p class="text-sm text-slate-500 italic">糖尿病筛查 - 检查血糖水平。</p>
+                    </div>
+                </li>
+                <!-- Dynamic Gender Test -->
+                <li id="gender-test-row" class="flex gap-4 p-3 hover:bg-slate-50 rounded-lg transition-colors">
+                    <div class="text-green-500 mt-1"><i class="fas fa-check-circle"></i></div>
+                    <div>
+                        <p id="gender-test-en" class="font-bold text-slate-800">Mammogram & Cervical Screening</p>
+                        <p id="gender-test-cn" class="text-sm text-slate-500 italic">乳腺癌及宫颈癌筛查。</p>
+                    </div>
+                </li>
+                <li class="flex gap-4 p-3 hover:bg-slate-50 rounded-lg transition-colors">
+                    <div class="text-green-500 mt-1"><i class="fas fa-check-circle"></i></div>
+                    <div>
+                        <p class="font-bold text-slate-800">National Bowel Cancer Screening</p>
+                        <p class="text-sm text-slate-500 italic">肠癌筛查 - 确认是否需要新的测试包。</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Section 2: Preparation -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="card p-6">
+                <h4 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <i class="fas fa-tasks text-orange-500"></i> Checklist 就诊准备
+                </h4>
+                <ul class="space-y-3 text-sm">
+                    <li class="flex items-center gap-2 bg-slate-50 p-2 rounded">
+                        <i class="fas fa-id-card text-slate-400"></i>
+                        <span>Medicare Card (Green) / Medicare卡</span>
+                    </li>
+                    <li class="flex items-center gap-2 bg-slate-50 p-2 rounded">
+                        <i class="fas fa-pills text-slate-400"></i>
+                        <span>Current Medications / 正在服用的药物</span>
+                    </li>
+                    <li class="flex items-center gap-2 bg-slate-50 p-2 rounded">
+                        <i class="fas fa-utensils text-slate-400"></i>
+                        <span>Fasting? (Ask GP) / 是否需要空腹？</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card p-6 border-l-4 border-purple-500">
+                <h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
+                    <i class="fas fa-language text-purple-500"></i> Need an Interpreter?
+                </h4>
+                <p class="text-xs text-slate-500 mb-3">If the doctor doesn't speak Chinese, call:</p>
+                <div class="bg-purple-600 text-white text-center py-3 rounded-xl shadow-lg shadow-purple-200 mb-2">
+                    <span class="text-2xl font-black tracking-widest">131 450</span>
+                </div>
+                <p class="text-xs font-bold text-center text-slate-700">TIS National (Free Service)</p>
+                <p class="text-[10px] text-center text-slate-400 italic">如果您需要中文翻译，可以告诉前台拨打这个电话。</p>
+            </div>
+        </div>
+
+        <!-- Section 3: Result Capture -->
+        <div class="card p-6 md:p-8 mb-10">
+            <h3 class="text-xl font-bold text-slate-800 mb-2">Results for the "Data Scientist"</h3>
+            <p class="text-sm text-slate-500 mb-6 italic">请向医生索要一份结果报告副本，或拍下这些关键数值发给我。</p>
+            
+            <div class="space-y-4">
+                <div class="flex justify-between items-center border-b pb-2">
+                    <span class="font-medium">Blood Pressure (血压)</span>
+                    <span class="text-slate-300 font-mono">______ / ______</span>
+                </div>
+                <div class="flex justify-between items-center border-b pb-2">
+                    <span class="font-medium">Total Cholesterol (胆固醇)</span>
+                    <span class="text-slate-300 font-mono">______ mmol/L</span>
+                </div>
+                <div class="flex justify-between items-center border-b pb-2">
+                    <span class="font-medium">Blood Sugar (HbA1c / 血糖)</span>
+                    <span class="text-slate-300 font-mono">______ %</span>
+                </div>
+                <div id="psa-row" class="hidden flex justify-between items-center border-b pb-2 text-blue-600 font-bold">
+                    <span>PSA (Prostate Check / 前列腺)</span>
+                    <span class="text-slate-300 font-mono">______ ng/mL</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center pb-20 no-print">
+            <button onclick="window.print()" class="bg-slate-900 text-white px-10 py-4 rounded-2xl font-bold shadow-xl hover:bg-slate-800 transition-all active:scale-95">
+                <i class="fas fa-print mr-2"></i> Print or Save as PDF
+            </button>
+            <p class="mt-6 text-slate-400 text-xs tracking-wide">
+                Built for my parents in Australia • 2024
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function setProfile(gender) {
+            const tabMale = document.getElementById('tab-male');
+            const tabFemale = document.getElementById('tab-female');
+            const psaRow = document.getElementById('psa-row');
+            const genderTestEn = document.getElementById('gender-test-en');
+            const genderTestCn = document.getElementById('gender-test-cn');
+
+            if (gender === 'male') {
+                tabMale.classList.add('bg-white', 'text-blue-600', 'shadow-sm');
+                tabMale.classList.remove('text-slate-600');
+                tabFemale.classList.remove('bg-white', 'text-blue-600', 'shadow-sm');
+                tabFemale.classList.add('text-slate-600');
+                psaRow.classList.remove('hidden');
+                genderTestEn.innerText = "Prostate Health Check (PSA Test)";
+                genderTestCn.innerText = "前列腺健康检查 (PSA 测试)。";
+            } else {
+                tabFemale.classList.add('bg-white', 'text-blue-600', 'shadow-sm');
+                tabFemale.classList.remove('text-slate-600');
+                tabMale.classList.remove('bg-white', 'text-blue-600', 'shadow-sm');
+                tabMale.classList.add('text-slate-600');
+                psaRow.classList.add('hidden');
+                genderTestEn.innerText = "Mammogram & Cervical Screening";
+                genderTestCn.innerText = "乳腺癌及宫颈癌筛查。";
+            }
+        }
+    </script>
+</body>
+</html>
