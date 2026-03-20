@@ -35,24 +35,54 @@ permalink: /health/
             border-left: 5px solid #3b82f6;
         }
 
+        .resource-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: #fdfdfd;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            transition: all 0.2s;
+        }
+
+        .resource-btn:hover {
+            background: #f0f9ff;
+            border-color: #3b82f6;
+        }
+
+        .history-table th {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.5rem;
+            background: #f8fafc;
+        }
+
+        .history-table td {
+            padding: 0.5rem;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+        }
+
         @media print {
             .no-print { display: none !important; }
             body { background: white; padding: 0; }
-            .card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
-            .page-break { page-break-before: always; }
+            .card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; margin-bottom: 1rem; }
+            input[type="text"], textarea { border: none !important; border-bottom: 1px solid #eee !important; }
         }
     </style>
 </head>
 <body class="min-h-screen p-4 md:p-10">
 
-    <div class="max-w-3xl mx-auto">
+    <div class="max-w-4xl mx-auto">
         <!-- Header -->
         <header class="text-center mb-10">
             <div class="inline-block bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-bold mb-3 uppercase tracking-wider">Australia Medicare Guide</div>
             <h1 class="text-3xl md:text-4xl font-extrabold mb-2 text-slate-900">Family Health History</h1>
             <h2 class="text-2xl font-bold text-blue-600 mb-4">家族健康历史与就诊指南</h2>
-            <p class="text-slate-600 max-w-md mx-auto">A simple guide for your next GP check-up in Australia.</p>
-            <p class="text-slate-400 italic text-sm">一份帮助您在澳洲进行全科医生检查的简单指南。</p>
+            <p class="text-slate-600 max-w-md mx-auto">A guide for your next GP check-up in Sydney.</p>
+            <p class="text-slate-400 italic text-sm">一份帮助您在悉尼进行全科医生检查的简单指南。</p>
         </header>
 
         <!-- Profile Selector -->
@@ -123,85 +153,108 @@ permalink: /health/
             </ul>
         </div>
 
-        <!-- Section 2: Family History Investigation -->
-        <div class="card p-6 md:p-8 mb-8 bg-slate-50 border-dashed border-2 border-slate-300">
+        <!-- Section 2: Family History Investigation (Tabular - Separated) -->
+        <div class="card p-6 md:p-8 mb-8">
             <div class="flex items-center gap-4 mb-6">
                 <div class="bg-indigo-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-200">
                     <i class="fas fa-users text-xl"></i>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold text-slate-800">Family History Questions</h3>
-                    <p class="text-slate-500 text-sm italic">家族健康背景调查</p>
+                    <h3 class="text-xl font-bold text-slate-800">Family History Record</h3>
+                    <p class="text-slate-500 text-sm italic">家族健康调查表</p>
                 </div>
             </div>
 
-            <p class="text-sm text-slate-600 mb-6 italic">Parents, please help me fill this in about our relatives (grandparents, uncles, aunts).<br>爸妈，请帮我填写有关我们亲戚（祖父母、叔伯姑舅）的信息。</p>
-            
-            <div class="space-y-6">
-                <div class="bg-white p-4 rounded-xl border border-slate-200">
-                    <p class="font-bold text-slate-800 mb-1">Diabetes / 糖尿病</p>
-                    <p class="text-xs text-slate-500 mb-3 italic">Did anyone have "Sugar" disease? / 家族中有人患有“糖”病吗？</p>
-                    <textarea rows="2" class="w-full border-b border-slate-200 focus:border-indigo-500 outline-none resize-none text-sm" placeholder="Who? / 是谁？"></textarea>
+            <!-- Paternal Table -->
+            <div class="mb-8">
+                <h4 class="text-lg font-bold text-slate-700 mb-3 border-l-4 border-indigo-500 pl-3">Father's Side / 父亲家族 (Paternal)</h4>
+                <div class="overflow-x-auto border rounded-xl shadow-sm">
+                    <table class="w-full history-table text-left border-collapse">
+                        <thead>
+                            <tr class="text-slate-500 border-b">
+                                <th class="w-1/4">Relative / 亲属</th>
+                                <th class="text-center">Diabetes / 糖</th>
+                                <th class="text-center">Heart / 心</th>
+                                <th class="text-center">Stroke / 中风</th>
+                                <th class="text-center">Cancer / 癌</th>
+                                <th>Age/Notes / 备注</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <tr>
+                                <td class="bg-slate-50 font-semibold">Grandfather<br><span class="text-xs font-normal text-slate-400">爷爷</span></td>
+                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
+                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
+                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
+                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
+                                <td><input type="text" class="w-full border-b outline-none text-xs" placeholder="Age?"></td>
+                            </tr>
+                            <tr>
+                                <td class="bg-slate-50 font-semibold">Grandmother<br><span class="text-xs font-normal text-slate-400">奶奶</span></td>
+                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
+                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
+                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
+                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
+                                <td><input type="text" class="w-full border-b outline-none text-xs" placeholder="Age?"></td>
+                            </tr>
+                            <tr>
+                                <td class="bg-slate-50 font-semibold">Uncles/Aunts<br><span class="text-xs font-normal text-slate-400">叔伯姑</span></td>
+                                <td colspan="5" class="p-2">
+                                    <textarea class="w-full p-2 text-xs outline-none bg-slate-50 rounded" rows="1" placeholder="Note anyone else here..."></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
 
-                <div class="bg-white p-4 rounded-xl border border-slate-200">
-                    <p class="font-bold text-slate-800 mb-1">Heart Disease / 心脏病与中风</p>
-                    <p class="text-xs text-slate-500 mb-3 italic">Heart attacks or strokes before age 60? / 60岁之前有人患有心脏病或中风吗？</p>
-                    <textarea rows="2" class="w-full border-b border-slate-200 focus:border-indigo-500 outline-none resize-none text-sm" placeholder="Details / 详细情况"></textarea>
-                </div>
-
-                <div class="bg-white p-4 rounded-xl border border-slate-200">
-                    <p class="font-bold text-slate-800 mb-1">Cancer / 癌症</p>
-                    <p class="text-xs text-slate-500 mb-3 italic">Was anyone diagnosed with Cancer? What type? / 是否有人患过癌症？什么类型？</p>
-                    <textarea rows="2" class="w-full border-b border-slate-200 focus:border-indigo-500 outline-none resize-none text-sm" placeholder="Type and Who / 癌症类型和成员"></textarea>
-                </div>
-
-                <div class="bg-white p-4 rounded-xl border border-slate-200">
-                    <p class="font-bold text-slate-800 mb-1">Causes of Death / 去世原因</p>
-                    <p class="text-xs text-slate-500 mb-3 italic">Causes of death for our grandparents? / 祖父母/外祖父母的去世原因是什么？</p>
-                    <textarea rows="2" class="w-full border-b border-slate-200 focus:border-indigo-500 outline-none resize-none text-sm" placeholder="Notes / 记录"></textarea>
+            <!-- Maternal Table -->
+            <div class="mb-4">
+                <h4 class="text-lg font-bold text-slate-700 mb-3 border-l-4 border-pink-500 pl-3">Mother's Side / 母亲家族 (Maternal)</h4>
+                <div class="overflow-x-auto border rounded-xl shadow-sm">
+                    <table class="w-full history-table text-left border-collapse">
+                        <thead>
+                            <tr class="text-slate-500 border-b">
+                                <th class="w-1/4">Relative / 亲属</th>
+                                <th class="text-center">Diabetes / 糖</th>
+                                <th class="text-center">Heart / 心</th>
+                                <th class="text-center">Stroke / 中风</th>
+                                <th class="text-center">Cancer / 癌</th>
+                                <th>Age/Notes / 备注</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <tr>
+                                <td class="bg-slate-50 font-semibold">Grandfather<br><span class="text-xs font-normal text-slate-400">外公</span></td>
+                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
+                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
+                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
+                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
+                                <td><input type="text" class="w-full border-b outline-none text-xs" placeholder="Age?"></td>
+                            </tr>
+                            <tr>
+                                <td class="bg-slate-50 font-semibold">Grandmother<br><span class="text-xs font-normal text-slate-400">外婆</span></td>
+                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
+                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
+                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
+                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
+                                <td><input type="text" class="w-full border-b outline-none text-xs" placeholder="Age?"></td>
+                            </tr>
+                            <tr>
+                                <td class="bg-slate-50 font-semibold">Uncles/Aunts<br><span class="text-xs font-normal text-slate-400">舅姨</span></td>
+                                <td colspan="5" class="p-2">
+                                    <textarea class="w-full p-2 text-xs outline-none bg-slate-50 rounded" rows="1" placeholder="Note anyone else here..."></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
-        <!-- Section 3: Preparation & Interpreter -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div class="card p-6">
-                <h4 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
-                    <i class="fas fa-tasks text-orange-500"></i> Checklist 就诊准备
-                </h4>
-                <ul class="space-y-3 text-sm">
-                    <li class="flex items-center gap-2 bg-slate-50 p-2 rounded">
-                        <i class="fas fa-id-card text-slate-400"></i>
-                        <span>Medicare Card (Green) / Medicare卡</span>
-                    </li>
-                    <li class="flex items-center gap-2 bg-slate-50 p-2 rounded">
-                        <i class="fas fa-pills text-slate-400"></i>
-                        <span>Current Medications / 正在服用的药物</span>
-                    </li>
-                    <li class="flex items-center gap-2 bg-slate-50 p-2 rounded">
-                        <i class="fas fa-utensils text-slate-400"></i>
-                        <span>Fasting? (Ask GP) / 是否需要空腹？</span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="card p-6 border-l-4 border-purple-500">
-                <h4 class="font-bold text-slate-800 mb-2 flex items-center gap-2">
-                    <i class="fas fa-language text-purple-500"></i> Need an Interpreter?
-                </h4>
-                <p class="text-xs text-slate-500 mb-3">If the doctor doesn't speak Chinese, call:</p>
-                <div class="bg-purple-600 text-white text-center py-3 rounded-xl shadow-lg shadow-purple-200 mb-2">
-                    <span class="text-2xl font-black tracking-widest">131 450</span>
-                </div>
-                <p class="text-xs font-bold text-center text-slate-700">TIS National (Free Service)</p>
-                <p class="text-[10px] text-center text-slate-400 italic">如果您需要中文翻译，可以告诉前台拨打这个电话。</p>
-            </div>
-        </div>
-
-        <!-- Section 4: Result Capture -->
-        <div class="card p-6 md:p-8 mb-10">
-            <h3 class="text-xl font-bold text-slate-800 mb-2">Results Tracker</h3>
+        <!-- Section 3: Results Tracker -->
+        <div class="card p-6 md:p-8 mb-8">
+            <h3 class="text-xl font-bold text-slate-800 mb-2">Results Tracker (Current Visit)</h3>
             <p class="text-sm text-slate-500 mb-6 italic">请向医生索要一份结果报告副本，或拍下这些关键数值发给我。</p>
             
             <div class="space-y-4">
@@ -224,13 +277,55 @@ permalink: /health/
             </div>
         </div>
 
+        <!-- Section 4: Why History Matters (Resources) -->
+        <div class="card p-6 md:p-8 mb-10">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="bg-emerald-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-200">
+                    <i class="fas fa-book-open text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800">Learn More (Resources)</h3>
+                    <p class="text-slate-500 text-sm italic">为什么了解家族病史对我们的健康至关重要</p>
+                </div>
+            </div>
+            
+            <div class="space-y-4">
+                <a href="https://www.sohu.com/a/947459740_121948382" target="_blank" class="resource-btn border-emerald-100 bg-emerald-50/30">
+                    <div>
+                        <p class="font-bold text-slate-800 text-sm">遗传与健康：家族病史的重要性 (Sohu)</p>
+                        <p class="text-xs text-slate-600 mt-1">Explains why patterns in the family "biography" are the best predictor of risk.</p>
+                        <p class="text-[10px] text-slate-400 italic font-medium">了解家族“传记”中的模式是预测风险的最佳方式。</p>
+                    </div>
+                    <i class="fas fa-external-link-alt text-emerald-400 text-xs ml-4"></i>
+                </a>
+
+                <a href="https://www.mhcs.health.nsw.gov.au/publications/9240" target="_blank" class="resource-btn">
+                    <div>
+                        <p class="font-bold text-slate-800 text-sm">Keeping Healthy: Regular Check-ups (NSW Health)</p>
+                        <p class="text-xs text-slate-600 mt-1">Official Sydney guidance on finding health issues before they become serious.</p>
+                        <p class="text-[10px] text-slate-400 italic">新南威尔士州官方指南：在问题变得严重之前发现健康问题。</p>
+                    </div>
+                    <i class="fas fa-external-link-alt text-slate-300 text-xs ml-4"></i>
+                </a>
+
+                <a href="https://www.mayoclinic.org/zh-hans/healthy-lifestyle/adult-health/in-depth/medical-history/art-20044543" target="_blank" class="resource-btn">
+                    <div>
+                        <p class="font-bold text-slate-800 text-sm">Medical History: Compiling your Family Tree (Mayo)</p>
+                        <p class="text-xs text-slate-600 mt-1">How doctors use your family records to decide when to start screenings.</p>
+                        <p class="text-[10px] text-slate-400 italic">医生如何利用您的家庭记录来决定何时开始筛查。</p>
+                    </div>
+                    <i class="fas fa-external-link-alt text-slate-300 text-xs ml-4"></i>
+                </a>
+            </div>
+        </div>
+
         <!-- Footer -->
         <footer class="text-center pb-20 no-print">
             <button onclick="window.print()" class="bg-slate-900 text-white px-10 py-4 rounded-2xl font-bold shadow-xl hover:bg-slate-800 transition-all active:scale-95">
                 <i class="fas fa-print mr-2"></i> Print or Save as PDF
             </button>
             <p class="mt-6 text-slate-400 text-xs tracking-wide">
-                Family Medical History Portal • 2024
+                Made for mum and dad • 2026
             </p>
         </footer>
     </div>
