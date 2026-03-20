@@ -26,361 +26,416 @@ permalink: /health/
             border: 1px solid #e2e8f0;
         }
 
-        .btn-toggle {
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
         .script-box {
             background: #f8fafc;
             border-left: 5px solid #3b82f6;
         }
 
-        .resource-table th {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0.75rem;
-            background: #f8fafc;
-        }
-        
-        .resource-table td {
-            padding: 1rem;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
         .history-table th {
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            padding: 0.5rem;
+            padding: 0.4rem;
             background: #f8fafc;
         }
 
         .history-table td {
-            padding: 0.5rem;
+            padding: 0.4rem;
             border-bottom: 1px solid #f1f5f9;
             vertical-align: middle;
         }
 
-        .condition-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1rem;
+        .warning-banner {
+            background-color: #fef3c7;
+            border: 2px solid #f59e0b;
+            color: #92400e;
         }
 
-        .condition-item {
-            font-size: 0.85rem;
-            padding: 0.5rem;
-            border-radius: 0.5rem;
-            border: 1px solid #f1f5f9;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
+        details summary {
+            cursor: pointer;
+            list-style: none;
+            outline: none;
+        }
+        
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        input[disabled], textarea[disabled], input[type="checkbox"][disabled] {
+            cursor: not-allowed;
+            background-color: #f8fafc;
+            border-color: #e2e8f0;
         }
 
         @media print {
             .no-print { display: none !important; }
             body { background: white; padding: 0; }
-            .card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; margin-bottom: 1.5rem; }
-            input[type="text"], textarea { border: none !important; border-bottom: 1px solid #eee !important; }
-            .condition-grid { grid-template-columns: 1fr 1fr; }
+            .card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; margin-bottom: 1rem; }
+            details { display: block !important; }
+            details[open] summary { margin-bottom: 0.5rem; }
+            summary { font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 5px; }
         }
     </style>
 </head>
 <body class="min-h-screen p-4 md:p-10">
 
-    <div class="max-w-5xl mx-auto">
+    <div class="max-w-4xl mx-auto">
         <!-- Header -->
-        <header class="text-center mb-10">
-            <div class="inline-block bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-bold mb-3 uppercase tracking-wider">Australia Medicare Guide</div>
-            <h1 class="text-3xl md:text-4xl font-extrabold mb-2 text-slate-900">Health History & GP Guide</h1>
-            <h2 class="text-2xl font-bold text-blue-600 mb-4">个人与家族健康历史指南</h2>
-            <p class="text-slate-600 max-w-md mx-auto">A comprehensive guide for your next GP check-up in Sydney.</p>
-            <p class="text-slate-400 italic text-sm">一份帮助您在悉尼进行全科医生检查的详细指南。</p>
+        <header class="text-center mb-8">
+            <div class="inline-block bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-bold mb-3 uppercase tracking-wider">Sydney Medicare Guide</div>
+            <h1 class="text-3xl md:text-4xl font-extrabold mb-2 text-slate-900">Family Health History</h1>
+            <h2 class="text-2xl font-bold text-blue-600 mb-4">家族健康历史与就诊指南</h2>
+            <p class="text-slate-600 max-w-md mx-auto italic text-sm">A clinical guide for your next GP check-up.</p>
         </header>
 
+        <!-- Section 1: Why it is Important -->
+        <section class="card p-6 md:p-8 mb-8 border-t-4 border-emerald-500">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="bg-emerald-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-200">
+                    <i class="fas fa-info-circle text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800 uppercase tracking-tight">Why Sharing History is Important</h3>
+                    <p class="text-slate-500 text-sm italic">分享家族病史：给长辈的核心要点</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-slate-700 leading-relaxed text-sm mb-8">
+                <div class="space-y-4">
+                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
+                        <h4 class="font-bold text-emerald-800 mb-1">1. Find problems early (及早发现)</h4>
+                        <p>Knowing your history helps doctors decide when to start checks. If relatives had colorectal cancer, you may need to start screening at 40 instead of 50. If a mother or sister had breast cancer, you are at a higher risk and should get mammograms more frequently.</p>
+                    </div>
+                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
+                        <h4 class="font-bold text-emerald-800 mb-1">2. Save your life (挽救生命)</h4>
+                        <p>Diseases like cancer are much more treatable when caught early. For instance, the 5-year survival rate for early-stage colorectal cancer is over 90%. Knowing your risk is the first step to early detection.</p>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
+                        <h4 class="font-bold text-emerald-800 mb-1">3. Not just cancer (不只是癌症)</h4>
+                        <p>Family history is also a key factor for other common conditions, such as heart disease and stroke.</p>
+                    </div>
+                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
+                        <h4 class="font-bold text-emerald-800 mb-1">4. You can take action (积极行动)</h4>
+                        <p>Once you know your history, you can work with your doctor on a plan. This might include regular check-ups (using free programs) and healthy habits like eating well and avoiding smoking.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resource Table with Summaries -->
+            <div class="overflow-hidden border rounded-xl shadow-sm">
+                <table class="w-full text-left text-xs md:text-sm">
+                    <thead class="bg-slate-50 border-b">
+                        <tr>
+                            <th class="p-3 font-bold text-slate-600">Benefit (核心益处)</th>
+                            <th class="p-3 font-bold text-slate-600">Summary (要点总结)</th>
+                            <th class="p-3 font-bold text-slate-600">Reading (官方资源)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 bg-white">
+                        <tr>
+                            <td class="p-3 font-semibold">"Biography" Approach</td>
+                            <td class="p-3">Think of history as a family biography; understanding past chapters helps the doctor predict your future health plot.</td>
+                            <td class="p-3 text-blue-600 underline">
+                                <a href="https://www.sohu.com/a/947459740_121948382" target="_blank">搜狐：病史的重要性</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold">Inherited Cancers</td>
+                            <td class="p-3">Specific cancers often follow a family trail; knowing which ones helps you get screened 10 years earlier than average.</td>
+                            <td class="p-3 text-blue-600 underline">
+                                <a href="https://wsjkw.jl.gov.cn/zdzt/jkkp/202105/t20210519_8073359.html" target="_blank">吉林卫健委：癌症遗传</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold">Actionable Guides</td>
+                            <td class="p-3">This manual provides clear, step-by-step instructions on which preventive checks are most effective based on age.</td>
+                            <td class="p-3 text-blue-600 underline">
+                                <a href="https://mohw.gov.tw/cp-2704-82752-1.html" target="_blank">台湾卫福部：检查指南</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold">Comprehensive Risk</td>
+                            <td class="p-3">Family history isn't just about genes; it reflects shared habits and environments that impact heart health.</td>
+                            <td class="p-3 text-blue-600 underline">
+                                <a href="https://wsjkw.hangzhou.gov.cn/art/2022/10/21/art_1229113673_58932351.html" target="_blank">杭州卫健委：风险科普</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
         <!-- Profile Selector -->
-        <div class="flex justify-center mb-10 no-print">
+        <div class="flex justify-center mb-8 no-print">
             <div class="bg-slate-200 p-1.5 rounded-2xl flex gap-1 shadow-inner">
                 <button id="tab-female" onclick="setProfile('female')" class="btn-toggle flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold bg-white text-blue-600 shadow-sm">
                     <i class="fas fa-venus text-pink-500"></i>
                     <span>Mother 母亲</span>
                 </button>
-                <button id="tab-male" onclick="setProfile('male')" class="btn-toggle flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-slate-600 hover:bg-white/50">
+                <button id="tab-male" onclick="setProfile('male')" class="btn-toggle flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-slate-600 hover:text-blue-600">
                     <i class="fas fa-mars text-blue-500"></i>
                     <span>Father 父亲</span>
                 </button>
             </div>
         </div>
 
-        <!-- Section 1: The Doctor's Script -->
-        <div class="card p-6 md:p-8 mb-8">
+        <!-- Section 2: The Doctor's Script (Curious/Collaborative) -->
+        <div class="card p-6 md:p-8 mb-8 bg-blue-50/30">
             <div class="flex items-center gap-4 mb-6">
                 <div class="bg-blue-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-200">
                     <i class="fas fa-comment-medical text-xl"></i>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold text-slate-800">For the Doctor (English)</h3>
-                    <p class="text-slate-500 text-sm italic">请把这段话给医生看，或直接读给他们听</p>
+                    <h3 class="text-xl font-bold text-slate-800">For the Doctor (Collaborative)</h3>
+                    <p class="text-slate-500 text-sm italic">与医生沟通的建议：请把这段话给医生看</p>
                 </div>
             </div>
 
-            <div class="script-box p-6 rounded-xl mb-6">
+            <div class="script-box p-6 rounded-xl mb-6 bg-white shadow-sm">
                 <p class="text-lg font-semibold text-slate-900 leading-relaxed mb-4">
-                    "I haven't had a check-up in a long time. I am working with my family to organize our medical history. Since I am of Chinese descent and over 50, I would like to request the following screenings covered by Medicare:"
+                    "I'm interested in understanding my health risks better, specifically considering my background and age (over 55). I've been discussing family history with my children and wondered if you could explain which Medicare-covered screenings might be appropriate for me to check my current status?"
                 </p>
                 <hr class="border-slate-200 my-4">
                 <p class="text-slate-700 italic">
-                    “我很久没做身体检查了。我正在和家人一起整理病史。考虑到我是华裔且年龄超过50岁，我希望进行以下受 Medicare 资助的检查：”
+                    “我希望能更深入地了解自己的健康风险，尤其是考虑到我的背景和年龄（55岁以上）。我一直在与子女讨论家族病史，想请您解释一下，哪些受 Medicare 资助的筛查项目适合我，以便了解目前的健康状况？”
                 </p>
             </div>
 
-            <ul class="space-y-4">
-                <li class="flex gap-4 p-3 hover:bg-slate-50 rounded-lg transition-colors">
-                    <div class="text-green-500 mt-1"><i class="fas fa-check-circle"></i></div>
-                    <div>
-                        <p class="font-bold text-slate-800 text-sm">Heart Health Check (MBS Item 699)</p>
-                        <p class="text-xs text-slate-500 italic text-[11px]">心脏健康检查 - 检查血压、胆固醇水平及心血管风险。</p>
-                    </div>
+            <p class="text-xs text-slate-500 font-bold mb-4 uppercase tracking-wider">Suggested Checks / 建议检查项目:</p>
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <li class="flex gap-3 p-3 bg-white rounded-lg border">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <span>Heart Health Check (MBS 699)<br><span class="text-xs text-slate-500">心脏健康评估</span></span>
                 </li>
-                <li class="flex gap-4 p-3 hover:bg-slate-50 rounded-lg transition-colors">
-                    <div class="text-green-500 mt-1"><i class="fas fa-check-circle"></i></div>
-                    <div>
-                        <p class="font-bold text-slate-800 text-sm">Diabetes Screening (HbA1c Test)</p>
-                        <p class="text-xs text-slate-500 italic text-[11px]">糖尿病筛查 - 检查血糖水平。</p>
-                    </div>
+                <li class="flex gap-3 p-3 bg-white rounded-lg border">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <span>Diabetes Screening (HbA1c)<br><span class="text-xs text-slate-500">糖尿病筛查</span></span>
                 </li>
-                <li id="gender-test-row" class="flex gap-4 p-3 hover:bg-slate-50 rounded-lg transition-colors">
-                    <div class="text-green-500 mt-1"><i class="fas fa-check-circle"></i></div>
-                    <div>
-                        <p id="gender-test-en" class="font-bold text-slate-800 text-sm">Mammogram & Cervical Screening</p>
-                        <p id="gender-test-cn" class="text-xs text-slate-500 italic text-[11px]">乳腺癌及宫颈癌筛查。</p>
-                    </div>
+                <li class="flex gap-3 p-3 bg-white rounded-lg border">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <span id="gender-test-en">Breast/Cervical Screening<br><span id="gender-test-cn" class="text-xs text-slate-500">乳腺癌/宫颈癌筛查</span></span>
                 </li>
-                <li class="flex gap-4 p-3 hover:bg-slate-50 rounded-lg transition-colors">
-                    <div class="text-green-500 mt-1"><i class="fas fa-check-circle"></i></div>
-                    <div>
-                        <p class="font-bold text-slate-800 text-sm">National Bowel Cancer Screening</p>
-                        <p class="text-xs text-slate-500 italic text-[11px]">肠癌筛查 - 确认是否需要新的测试包。</p>
-                    </div>
+                <li class="flex gap-3 p-3 bg-white rounded-lg border">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <span>Bowel Cancer Kit Update<br><span class="text-xs text-slate-500">肠癌检查包进度</span></span>
                 </li>
             </ul>
         </div>
 
-        <!-- Section 2: Personal Conditions Checklist -->
-        <div class="card p-6 md:p-8 mb-8 bg-slate-50">
-            <div class="flex items-center gap-4 mb-6">
-                <div class="bg-orange-500 text-white w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg shadow-orange-200">
-                    <i class="fas fa-user-check text-xl"></i>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold text-slate-800">My Health History (For GP)</h3>
-                    <p class="text-slate-500 text-sm italic">我的个人健康状况（请勾选您的病史）</p>
-                </div>
-            </div>
-
-            <div class="space-y-8">
-                <!-- Group 1 -->
-                <div>
-                    <h4 class="font-bold text-blue-700 text-sm mb-3 border-b pb-1">1. Cardiovascular & Blood Health / 心血管与血液健康</h4>
-                    <div class="condition-grid">
-                        <div class="condition-item"><input type="checkbox"> <div><b>Coronary Artery Disease</b> (incl. heart attacks)<br><span class="text-slate-400">冠状动脉疾病（包括心脏病发作）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Hypertension</b> (High BP)<br><span class="text-slate-400">高血压</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Hyperlipidemia</b> (High Chol/Triglycerides)<br><span class="text-slate-400">高脂血症（高胆固醇/甘油三酯）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Stroke</b> (Ischemic/Hemorrhagic)<br><span class="text-slate-400">中风（缺血性/出血性）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Aneurysms</b> (Abdominal/Cerebral)<br><span class="text-slate-400">动脉瘤（腹部或脑部）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Blood Disorders</b> (Thalassemia/Hemophilia)<br><span class="text-slate-400">血液疾病（地中海贫血/血友病）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Deep Vein Thrombosis (DVT)</b><br><span class="text-slate-400">深静脉血栓 (DVT) 或慢性血栓</span></div></div>
-                    </div>
-                </div>
-
-                <!-- Group 2 -->
-                <div>
-                    <h4 class="font-bold text-red-700 text-sm mb-3 border-b pb-1">2. Cancer History / 癌症史</h4>
-                    <div class="condition-grid">
-                        <div class="condition-item"><input type="checkbox"> <div><b>Breast & Ovarian Cancer</b> (esp. before age 50)<br><span class="text-slate-400">乳腺癌和卵巢癌（特别是50岁前）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Colorectal Cancer</b> (incl. polyps)<br><span class="text-slate-400">结直肠癌（包括息肉病史）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Prostate Cancer</b><br><span class="text-slate-400">前列腺癌</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Pancreatic Cancer</b><br><span class="text-slate-400">胰腺癌</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Melanoma / Skin Cancer</b><br><span class="text-slate-400">黑色素瘤或复发性皮肤癌</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Leukemia or Lymphoma</b><br><span class="text-slate-400">白血病或淋巴瘤</span></div></div>
-                    </div>
-                </div>
-
-                <!-- Group 3 -->
-                <div>
-                    <h4 class="font-bold text-purple-700 text-sm mb-3 border-b pb-1">3. Endocrine & Metabolic / 内分泌与代谢疾病</h4>
-                    <div class="condition-grid">
-                        <div class="condition-item"><input type="checkbox"> <div><b>Diabetes</b> (Type 1, 2, or Gestational)<br><span class="text-slate-400">糖尿病（1型、2型或妊娠期）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Thyroid Disease</b> (Hypo/Hyper/Goiters)<br><span class="text-slate-400">甲状腺疾病（甲减、甲亢、甲状腺肿）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>PCOS</b> (Polycystic Ovary Syndrome)<br><span class="text-slate-400">多囊卵巢综合征 (PCOS)</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Obesity / Metabolic Syndrome</b><br><span class="text-slate-400">肥胖或代谢综合征</span></div></div>
-                    </div>
-                </div>
-
-                <!-- Group 4 -->
-                <div>
-                    <h4 class="font-bold text-indigo-700 text-sm mb-3 border-b pb-1">4. Neurological & Mental Health / 神经与精神健康</h4>
-                    <div class="condition-grid">
-                        <div class="condition-item"><input type="checkbox"> <div><b>Dementia / Alzheimer’s</b><br><span class="text-slate-400">痴呆症或阿尔茨海默病</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Movement Disorders</b> (Parkinson’s)<br><span class="text-slate-400">运动障碍（如帕金森病）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Seizure Disorders / Epilepsy</b><br><span class="text-slate-400">癫痫</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Mood Disorders</b> (Depression/Anxiety)<br><span class="text-slate-400">情感障碍（抑郁、焦虑、双相）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Psychotic Disorders</b> (Schizophrenia)<br><span class="text-slate-400">精神分裂症</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Addiction</b> (Alcohol/Substance)<br><span class="text-slate-400">成瘾（酒精或药物滥用）</span></div></div>
-                    </div>
-                </div>
-
-                <!-- Group 5 -->
-                <div>
-                    <h4 class="font-bold text-emerald-700 text-sm mb-3 border-b pb-1">5. Autoimmune & Inflammatory / 自身免疫与炎症性疾病</h4>
-                    <div class="condition-grid">
-                        <div class="condition-item"><input type="checkbox"> <div><b>Arthritis</b> (Rheumatoid/Gout)<br><span class="text-slate-400">关节炎（类风湿、痛风、骨关节炎）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Digestive</b> (Crohn’s/Colitis/Celiac)<br><span class="text-slate-400">消化系统问题（克罗恩病、溃疡性结肠炎）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Skin Conditions</b> (Psoriasis/Eczema)<br><span class="text-slate-400">皮肤病（银屑病或湿疹）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Lupus (SLE) / Connective Tissue</b><br><span class="text-slate-400">狼疮 (SLE) 或结缔组织疾病</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Multiple Sclerosis (MS)</b><br><span class="text-slate-400">多发性硬化症 (MS)</span></div></div>
-                    </div>
-                </div>
-
-                <!-- Group 6 -->
-                <div>
-                    <h4 class="font-bold text-teal-700 text-sm mb-3 border-b pb-1">6. Respiratory & Allergy / 呼吸与过敏问题</h4>
-                    <div class="condition-grid">
-                        <div class="condition-item"><input type="checkbox"> <div><b>Asthma</b> (Childhood or Adult-onset)<br><span class="text-slate-400">哮喘</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>COPD / Emphysema</b><br><span class="text-slate-400">慢阻肺、肺气肿或慢性支气管炎</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Severe Allergies</b> (Anaphylaxis)<br><span class="text-slate-400">严重过敏性反应（食物/药物/蜇刺）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Cystic Fibrosis</b><br><span class="text-slate-400">囊性纤维化</span></div></div>
-                    </div>
-                </div>
-
-                <!-- Group 7 -->
-                <div>
-                    <h4 class="font-bold text-cyan-700 text-sm mb-3 border-b pb-1">7. Sensory & Organ Health / 感官与器官健康</h4>
-                    <div class="condition-grid">
-                        <div class="condition-item"><input type="checkbox"> <div><b>Vision Loss</b> (Glaucoma/Macular)<br><span class="text-slate-400">视力丧失（青光眼、黄斑变性）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Hearing Loss</b> (Early-onset)<br><span class="text-slate-400">听力丧失（早发性或先天性）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Kidney Disease</b> (PKD/Failure)<br><span class="text-slate-400">肾脏疾病（多囊肾或肾衰竭）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Liver Disease</b> (Cirrhosis/Iron overload)<br><span class="text-slate-400">肝脏疾病（肝硬化或血色病）</span></div></div>
-                    </div>
-                </div>
-
-                <!-- Group 8 -->
-                <div>
-                    <h4 class="font-bold text-pink-700 text-sm mb-3 border-b pb-1">8. Pregnancy & Development / 怀孕与发育</h4>
-                    <div class="condition-grid">
-                        <div class="condition-item"><input type="checkbox"> <div><b>Infertility / IVF History</b><br><span class="text-slate-400">不孕症或试管婴儿史</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Miscarriages</b> (Recurrent 3+)<br><span class="text-slate-400">习惯性流产（3次或以上）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Birth Defects</b> (Spina bifida/Heart)<br><span class="text-slate-400">出生缺陷（脊柱裂、心脏缺陷等）</span></div></div>
-                        <div class="condition-item"><input type="checkbox"> <div><b>Developmental Delays</b> (Autism/Downs)<br><span class="text-slate-400">发育迟缓（自闭症谱系或唐氏综合症）</span></div></div>
-                    </div>
-                </div>
+        <!-- Warning Banner -->
+        <div class="warning-banner p-4 rounded-xl mb-8 flex items-start gap-3 no-print">
+            <i class="fas fa-pen-nib text-2xl"></i>
+            <div>
+                <p class="font-bold">PLEASE DO NOT TYPE HERE / 请勿在此输入</p>
+                <p class="text-sm font-medium">This website is a visual guide. All fields are disabled to prevent data loss. Please <b>print this</b> and write with a pen to bring to your doctor.</p>
+                <p class="text-xs mt-1 font-bold uppercase">本网页不保存数据。请打印此页面，并使用笔手写记录。</p>
             </div>
         </div>
 
-        <!-- Section 3: Family History Investigation (Tabular) -->
+        <!-- Section 3: Family History Record -->
         <div class="card p-6 md:p-8 mb-8">
             <div class="flex items-center gap-4 mb-6">
                 <div class="bg-indigo-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-200">
                     <i class="fas fa-users text-xl"></i>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold text-slate-800">Extended Family History Record</h3>
-                    <p class="text-slate-500 text-sm italic">家族健康调查表（请协助填写亲属病史）</p>
+                    <h3 class="text-xl font-bold text-slate-800">Family History Record</h3>
+                    <p class="text-slate-500 text-sm italic">家族健康调查表 (请手写记录)</p>
                 </div>
             </div>
 
-            <!-- Paternal Table -->
-            <div class="mb-8">
-                <h4 class="text-lg font-bold text-slate-700 mb-3 border-l-4 border-indigo-500 pl-3">Father's Side / 父亲家族 (Paternal)</h4>
-                <div class="overflow-x-auto border rounded-xl shadow-sm">
-                    <table class="w-full history-table text-left border-collapse">
-                        <thead>
-                            <tr class="text-slate-500 border-b">
-                                <th class="w-1/4">Relative / 亲属</th>
-                                <th class="text-center">Diabetes / 糖</th>
-                                <th class="text-center">Heart / 心</th>
-                                <th class="text-center">Stroke / 中风</th>
-                                <th class="text-center">Cancer / 癌</th>
-                                <th>Age/Notes / 备注</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-sm">
-                            <tr>
-                                <td class="bg-slate-50 font-semibold">Grandfather<br><span class="text-xs font-normal text-slate-400">爷爷</span></td>
-                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
-                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
-                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
-                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
-                                <td><input type="text" class="w-full border-b outline-none text-xs" placeholder="Age?"></td>
-                            </tr>
-                            <tr>
-                                <td class="bg-slate-50 font-semibold">Grandmother<br><span class="text-xs font-normal text-slate-400">奶奶</span></td>
-                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
-                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
-                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
-                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
-                                <td><input type="text" class="w-full border-b outline-none text-xs" placeholder="Age?"></td>
-                            </tr>
-                            <tr>
-                                <td class="bg-slate-50 font-semibold">Uncles/Aunts<br><span class="text-xs font-normal text-slate-400">叔伯姑</span></td>
-                                <td colspan="5" class="p-2">
-                                    <textarea class="w-full p-2 text-xs outline-none bg-slate-50 rounded" rows="1" placeholder="Note anyone else here..."></textarea>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="space-y-10">
+                <!-- Paternal -->
+                <div>
+                    <h4 class="text-md font-bold text-slate-700 mb-3 border-l-4 border-indigo-500 pl-3 uppercase tracking-tight">Father's Side (Paternal / 父亲家族)</h4>
+                    <div class="overflow-x-auto border rounded-xl mb-4">
+                        <table class="w-full history-table text-left border-collapse">
+                            <thead>
+                                <tr class="text-slate-500 border-b">
+                                    <th class="w-1/4">Relative / 亲属</th>
+                                    <th class="text-center">Diabetes / 糖</th>
+                                    <th class="text-center">Heart / 心</th>
+                                    <th class="text-center">Stroke / 中</th>
+                                    <th class="text-center">Cancer / 癌</th>
+                                    <th>Age/Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm">
+                                <tr><td class="bg-slate-50 font-semibold">Grandfather (爷爷)</td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td><input type="text" disabled placeholder="________" class="w-full border-b border-transparent"></td></tr>
+                                <tr><td class="bg-slate-50 font-semibold">Grandmother (奶奶)</td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td><input type="text" disabled placeholder="________" class="w-full border-b border-transparent"></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <details class="no-print border rounded-xl overflow-hidden">
+                        <summary class="text-sm font-bold text-indigo-600 bg-slate-50 py-3 px-4 flex justify-between items-center">
+                            <span>Extended Paternal History (Uncles/Aunts) / 父亲家族亲属</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </summary>
+                        <div class="p-2 overflow-x-auto">
+                             <table class="w-full history-table text-left border-collapse">
+                                <tbody class="text-xs">
+                                    <tr><td class="w-1/4 font-semibold italic text-slate-400">Name/Rel:</td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td><input type="text" disabled placeholder="________" class="w-full border-b border-transparent"></td></tr>
+                                    <tr><td class="w-1/4 font-semibold italic text-slate-400">Name/Rel:</td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td><input type="text" disabled placeholder="________" class="w-full border-b border-transparent"></td></tr>
+                                </tbody>
+                             </table>
+                             <div class="p-3">
+                                <label class="text-[10px] font-bold text-slate-400 uppercase">Paternal Branch Notes / 备注</label>
+                                <textarea disabled rows="2" class="w-full border-b bg-transparent mt-1 text-xs" placeholder="________________________________"></textarea>
+                             </div>
+                        </div>
+                    </details>
                 </div>
-            </div>
 
-            <!-- Maternal Table -->
-            <div class="mb-4">
-                <h4 class="text-lg font-bold text-slate-700 mb-3 border-l-4 border-pink-500 pl-3">Mother's Side / 母亲家族 (Maternal)</h4>
-                <div class="overflow-x-auto border rounded-xl shadow-sm">
-                    <table class="w-full history-table text-left border-collapse">
-                        <thead>
-                            <tr class="text-slate-500 border-b">
-                                <th class="w-1/4">Relative / 亲属</th>
-                                <th class="text-center">Diabetes / 糖</th>
-                                <th class="text-center">Heart / 心</th>
-                                <th class="text-center">Stroke / 中风</th>
-                                <th class="text-center">Cancer / 癌</th>
-                                <th>Age/Notes / 备注</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-sm">
-                            <tr>
-                                <td class="bg-slate-50 font-semibold">Grandfather<br><span class="text-xs font-normal text-slate-400">外公</span></td>
-                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
-                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
-                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
-                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
-                                <td><input type="text" class="w-full border-b outline-none text-xs" placeholder="Age?"></td>
-                            </tr>
-                            <tr>
-                                <td class="bg-slate-50 font-semibold">Grandmother<br><span class="text-xs font-normal text-slate-400">外婆</span></td>
-                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
-                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
-                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
-                                <td class="text-center"><input type="checkbox" class="w-4 h-4"></td>
-                                <td><input type="text" class="w-full border-b outline-none text-xs" placeholder="Age?"></td>
-                            </tr>
-                            <tr>
-                                <td class="bg-slate-50 font-semibold">Uncles/Aunts<br><span class="text-xs font-normal text-slate-400">舅姨</span></td>
-                                <td colspan="5" class="p-2">
-                                    <textarea class="w-full p-2 text-xs outline-none bg-slate-50 rounded" rows="1" placeholder="Note anyone else here..."></textarea>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <!-- Maternal -->
+                <div>
+                    <h4 class="text-md font-bold text-slate-700 mb-3 border-l-4 border-pink-500 pl-3 uppercase tracking-tight">Mother's Side (Maternal / 母亲家族)</h4>
+                    <div class="overflow-x-auto border rounded-xl mb-4">
+                        <table class="w-full history-table text-left border-collapse">
+                            <thead>
+                                <tr class="text-slate-500 border-b">
+                                    <th class="w-1/4">Relative / 亲属</th>
+                                    <th class="text-center">Diabetes / 糖</th>
+                                    <th class="text-center">Heart / 心</th>
+                                    <th class="text-center">Stroke / 中</th>
+                                    <th class="text-center">Cancer / 癌</th>
+                                    <th>Age/Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm">
+                                <tr><td class="bg-slate-50 font-semibold">Grandfather (外公)</td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td><input type="text" disabled placeholder="________" class="w-full border-b border-transparent"></td></tr>
+                                <tr><td class="bg-slate-50 font-semibold">Grandmother (外婆)</td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td><input type="text" disabled placeholder="________" class="w-full border-b border-transparent"></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <details class="no-print border rounded-xl overflow-hidden">
+                        <summary class="text-sm font-bold text-pink-600 bg-slate-50 py-3 px-4 flex justify-between items-center">
+                            <span>Extended Maternal History (Uncles/Aunts) / 母亲家族亲属</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </summary>
+                        <div class="p-2 overflow-x-auto">
+                             <table class="w-full history-table text-left border-collapse">
+                                <tbody class="text-xs">
+                                    <tr><td class="w-1/4 font-semibold italic text-slate-400">Name/Rel:</td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td><input type="text" disabled placeholder="________" class="w-full border-b border-transparent"></td></tr>
+                                    <tr><td class="w-1/4 font-semibold italic text-slate-400">Name/Rel:</td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td class="text-center"><input type="checkbox" disabled></td><td><input type="text" disabled placeholder="________" class="w-full border-b border-transparent"></td></tr>
+                                </tbody>
+                             </table>
+                             <div class="p-3">
+                                <label class="text-[10px] font-bold text-slate-400 uppercase">Maternal Branch Notes / 备注</label>
+                                <textarea disabled rows="2" class="w-full border-b bg-transparent mt-1 text-xs" placeholder="________________________________"></textarea>
+                             </div>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- Comprehensive Checklist -->
+                <div class="bg-slate-900 text-white p-6 rounded-2xl border shadow-xl">
+                    <h4 class="text-lg font-bold mb-4 flex items-center gap-3">
+                        <i class="fas fa-clipboard-list text-blue-400"></i>
+                        Full Conditions Checklist / 全面家族疾病清单
+                    </h4>
+                    <p class="text-xs text-slate-400 mb-6 italic">If any relative had these, please mark them in the notes sections above.<br>如果任何亲属患有以下疾病，请在上方备注栏中记录。</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                        <details class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <summary class="text-xs font-bold uppercase tracking-widest text-blue-400">1. Cardiovascular & Blood / 心血管与血液</summary>
+                            <ul class="mt-3 text-[11px] space-y-1 text-slate-300">
+                                <li>Coronary Artery Disease / 冠心病 (Age?)</li>
+                                <li>Hypertension / 高血压</li>
+                                <li>Hyperlipidemia / 高血脂</li>
+                                <li>Stroke / 中风</li>
+                                <li>Aneurysms / 动脉瘤</li>
+                                <li>Blood Disorders / 血液病 (贫血/血友病)</li>
+                                <li>DVT (Blood Clots) / 深静脉血栓</li>
+                            </ul>
+                        </details>
+
+                        <details class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <summary class="text-xs font-bold uppercase tracking-widest text-blue-400">2. Cancer History / 癌症病史</summary>
+                            <ul class="mt-3 text-[11px] space-y-1 text-slate-300">
+                                <li>Breast & Ovarian / 乳腺癌及卵巢癌</li>
+                                <li>Colorectal / 结直肠癌 (Polyps?)</li>
+                                <li>Prostate / 前列腺癌</li>
+                                <li>Pancreatic / 胰腺癌</li>
+                                <li>Melanoma / 黑色素瘤 (Skin)</li>
+                                <li>Leukemia/Lymphoma / 白血病/淋巴瘤</li>
+                            </ul>
+                        </details>
+
+                        <details class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <summary class="text-xs font-bold uppercase tracking-widest text-blue-400">3. Endocrine & Metabolic / 内分泌与代谢</summary>
+                            <ul class="mt-3 text-[11px] space-y-1 text-slate-300">
+                                <li>Diabetes (Type 1, 2, Gestational) / 糖尿病</li>
+                                <li>Thyroid Disease / 甲状腺疾病</li>
+                                <li>PCOS / 多囊卵巢综合征</li>
+                                <li>Obesity / 肥胖症 (Metabolic Syndrome)</li>
+                            </ul>
+                        </details>
+
+                        <details class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <summary class="text-xs font-bold uppercase tracking-widest text-blue-400">4. Neuro & Mental / 神经与心理</summary>
+                            <ul class="mt-3 text-[11px] space-y-1 text-slate-300">
+                                <li>Dementia / 痴呆症 (Alzheimer's)</li>
+                                <li>Parkinson's/Huntington's / 运动障碍</li>
+                                <li>Seizure Disorders / 癫痫</li>
+                                <li>Mood Disorders / 情绪障碍 (抑郁/焦虑)</li>
+                                <li>Psychotic / 精神分裂症</li>
+                                <li>Addiction / 成瘾 (酗酒)</li>
+                            </ul>
+                        </details>
+
+                        <details class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <summary class="text-xs font-bold uppercase tracking-widest text-blue-400">5. Autoimmune & Inflamm. / 自身免疫</summary>
+                            <ul class="mt-3 text-[11px] space-y-1 text-slate-300">
+                                <li>Arthritis / 关节炎 (Gout/Rheumatoid)</li>
+                                <li>Digestive Issues / 消化系统 (克罗恩病/乳糜泻)</li>
+                                <li>Skin Conditions / 皮肤病 (湿疹/银屑病)</li>
+                                <li>Lupus (SLE) / 红斑狼疮</li>
+                                <li>Multiple Sclerosis (MS) / 多发性硬化症</li>
+                            </ul>
+                        </details>
+
+                        <details class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <summary class="text-xs font-bold uppercase tracking-widest text-blue-400">6. Respiratory & Allergy / 呼吸与过敏</summary>
+                            <ul class="mt-3 text-[11px] space-y-1 text-slate-300">
+                                <li>Asthma / 哮喘</li>
+                                <li>COPD / 慢性阻塞性肺病</li>
+                                <li>Severe Allergies / 严重过敏 (Food/Med)</li>
+                                <li>Cystic Fibrosis / 囊性纤维化</li>
+                            </ul>
+                        </details>
+
+                        <details class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <summary class="text-xs font-bold uppercase tracking-widest text-blue-400">7. Sensory & Organ / 感官与器官</summary>
+                            <ul class="mt-3 text-[11px] space-y-1 text-slate-300">
+                                <li>Vision Loss / 视力 (青光眼/黄斑变性)</li>
+                                <li>Hearing Loss / 听力丧失</li>
+                                <li>Kidney Disease / 肾脏疾病 (PKD)</li>
+                                <li>Liver Disease / 肝脏疾病 (肝硬化/铁负荷)</li>
+                            </ul>
+                        </details>
+
+                        <details class="bg-slate-800 p-3 rounded-xl border border-slate-700">
+                            <summary class="text-xs font-bold uppercase tracking-widest text-blue-400">8. Pregnancy & Development / 怀孕与发育</summary>
+                            <ul class="mt-3 text-[11px] space-y-1 text-slate-300">
+                                <li>Infertility / 不孕不育 (IVF?)</li>
+                                <li>Miscarriages / 反复流产 (3+)</li>
+                                <li>Birth Defects / 出生缺陷</li>
+                                <li>Developmental Delays / 发育迟缓 (自闭症)</li>
+                            </ul>
+                        </details>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Section 4: Results Tracker -->
-        <div class="card p-6 md:p-8 mb-8">
+        <div class="card p-6 md:p-8 mb-12 border-l-8 border-orange-500">
             <h3 class="text-xl font-bold text-slate-800 mb-2">Results Tracker (Current Visit)</h3>
-            <p class="text-sm text-slate-500 mb-6 italic">请向医生索要一份结果报告副本，并记录以下数值。</p>
+            <p class="text-sm text-gray-600 mb-6 italic">Hand-write your results from your doctor here.</p>
             
             <div class="space-y-4">
                 <div class="flex justify-between items-center border-b pb-2">
@@ -402,69 +457,10 @@ permalink: /health/
             </div>
         </div>
 
-        <!-- Section 5: Why History Matters (Resources) -->
-        <div class="card p-6 md:p-8 mb-10">
-            <div class="flex items-center gap-4 mb-6">
-                <div class="bg-emerald-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-200">
-                    <i class="fas fa-book-open text-xl"></i>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold text-slate-800">Learn More (Resources)</h3>
-                    <p class="text-slate-500 text-sm italic">为什么了解家族病史对健康至关重要</p>
-                </div>
-            </div>
-            
-            <div class="overflow-x-auto border rounded-xl">
-                <table class="w-full resource-table text-left border-collapse">
-                    <thead>
-                        <tr class="border-b">
-                            <th class="w-1/3">Source / 来源</th>
-                            <th>Summary / 摘要</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-sm">
-                        <tr>
-                            <td>
-                                <a href="https://www.sohu.com/a/947459740_121948382" target="_blank" class="font-bold text-blue-600 hover:underline">遗传与健康：家族病史的重要性 (Sohu)</a>
-                            </td>
-                            <td>
-                                <p class="text-slate-800 font-medium">Why it matters:</p>
-                                <p class="text-slate-600 text-xs mb-2">Explains why patterns in the family "biography" are the best predictor of health risk.</p>
-                                <p class="text-slate-800 font-medium font-bold italic">重要性：</p>
-                                <p class="text-slate-500 text-xs italic">解释了为什么家族“传记”中的模式是预测健康风险的最佳指标。</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="https://wsjkw.jl.gov.cn/zdzt/jkkp/202105/t20210519_8073359.html" target="_blank" class="font-bold text-blue-600 hover:underline">这8种癌症最易遗传 (Jilin Health Commission)</a>
-                            </td>
-                            <td>
-                                <p class="text-slate-800 font-medium">Why it matters:</p>
-                                <p class="text-slate-600 text-xs mb-2">Direct authority guidance on which cancers run in families and require early screening.</p>
-                                <p class="text-slate-800 font-medium font-bold italic">重要性：</p>
-                                <p class="text-slate-500 text-xs italic">权威指南：说明哪些癌症具有家族遗传倾向，以及为什么需要尽早进行筛查。</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="https://www.mayoclinic.org/zh-hans/healthy-lifestyle/adult-health/in-depth/medical-history/art-20044543" target="_blank" class="font-bold text-blue-600 hover:underline">Medical History: Compiling your Family Tree (Mayo Clinic)</a>
-                            </td>
-                            <td>
-                                <p class="text-slate-800 font-medium">Why it matters:</p>
-                                <p class="text-slate-600 text-xs mb-2">How doctors use your family records to decide when to start medical screenings.</p>
-                                <p class="text-slate-800 font-medium font-bold italic">重要性：</p>
-                                <p class="text-slate-500 text-xs italic">说明医生如何利用您的家庭记录来决定何时开始各项医疗检查。</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
         <!-- Footer -->
         <footer class="text-center pb-20 no-print">
             <button onclick="window.print()" class="bg-slate-900 text-white px-10 py-4 rounded-2xl font-bold shadow-xl hover:bg-slate-800 transition-all active:scale-95">
-                <i class="fas fa-print mr-2"></i> Print or Save as PDF
+                <i class="fas fa-print mr-2"></i> Print Medical Guide
             </button>
             <p class="mt-6 text-slate-400 text-xs tracking-wide">
                 Made for mum and dad • 2026
@@ -495,7 +491,7 @@ permalink: /health/
                 tabMale.classList.add('text-gray-600');
                 psaRow.classList.add('hidden');
                 genderTestEn.innerText = "Breast/Cervical Cancer Screening";
-                genderTestCn.innerText = "乳腺癌/宫颈癌筛查。";
+                genderTestCn.innerText = "乳腺癌及宫颈癌筛查。";
             }
         }
     </script>
