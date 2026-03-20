@@ -39,6 +39,7 @@ permalink: /health/
             .no-print { display: none !important; }
             body { background: white; padding: 0; }
             .card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+            .page-break { page-break-before: always; }
         }
     </style>
 </head>
@@ -72,7 +73,7 @@ permalink: /health/
         <div class="card p-6 md:p-8 mb-8">
             <div class="flex items-center gap-4 mb-6">
                 <div class="bg-blue-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-200">
-                    <i class="fas fa-file-medical text-xl"></i>
+                    <i class="fas fa-comment-medical text-xl"></i>
                 </div>
                 <div>
                     <h3 class="text-xl font-bold text-slate-800">For the Doctor (English)</h3>
@@ -82,11 +83,11 @@ permalink: /health/
 
             <div class="script-box p-6 rounded-xl mb-6">
                 <p class="text-lg font-semibold text-slate-900 leading-relaxed mb-4">
-                    "I haven't had a check-up in a long time. My son is a Data Scientist and is helping me organize our family medical history. Since I am of Chinese descent and over 50, I would like to request the following screenings covered by Medicare:"
+                    "I haven't had a check-up in a long time. I am working with my family to organize our medical history. Since I am of Chinese descent and over 50, I would like to request the following screenings covered by Medicare:"
                 </p>
                 <hr class="border-slate-200 my-4">
                 <p class="text-slate-700 italic">
-                    “我很久没做身体检查了。我的儿子是一名数据科学家，他正在帮我整理家族病史。考虑到我是华裔且年龄超过50岁，我希望进行以下受 Medicare 资助的检查：”
+                    “我很久没做身体检查了。我正在和家人一起整理病史。考虑到我是华裔且年龄超过50岁，我希望进行以下受 Medicare 资助的检查：”
                 </p>
             </div>
 
@@ -105,7 +106,6 @@ permalink: /health/
                         <p class="text-sm text-slate-500 italic">糖尿病筛查 - 检查血糖水平。</p>
                     </div>
                 </li>
-                <!-- Dynamic Gender Test -->
                 <li id="gender-test-row" class="flex gap-4 p-3 hover:bg-slate-50 rounded-lg transition-colors">
                     <div class="text-green-500 mt-1"><i class="fas fa-check-circle"></i></div>
                     <div>
@@ -123,7 +123,48 @@ permalink: /health/
             </ul>
         </div>
 
-        <!-- Section 2: Preparation -->
+        <!-- Section 2: Family History Investigation -->
+        <div class="card p-6 md:p-8 mb-8 bg-slate-50 border-dashed border-2 border-slate-300">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="bg-indigo-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-200">
+                    <i class="fas fa-users text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800">Family History Questions</h3>
+                    <p class="text-slate-500 text-sm italic">家族健康背景调查</p>
+                </div>
+            </div>
+
+            <p class="text-sm text-slate-600 mb-6 italic">Parents, please help me fill this in about our relatives (grandparents, uncles, aunts).<br>爸妈，请帮我填写有关我们亲戚（祖父母、叔伯姑舅）的信息。</p>
+            
+            <div class="space-y-6">
+                <div class="bg-white p-4 rounded-xl border border-slate-200">
+                    <p class="font-bold text-slate-800 mb-1">Diabetes / 糖尿病</p>
+                    <p class="text-xs text-slate-500 mb-3 italic">Did anyone have "Sugar" disease? / 家族中有人患有“糖”病吗？</p>
+                    <textarea rows="2" class="w-full border-b border-slate-200 focus:border-indigo-500 outline-none resize-none text-sm" placeholder="Who? / 是谁？"></textarea>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-slate-200">
+                    <p class="font-bold text-slate-800 mb-1">Heart Disease / 心脏病与中风</p>
+                    <p class="text-xs text-slate-500 mb-3 italic">Heart attacks or strokes before age 60? / 60岁之前有人患有心脏病或中风吗？</p>
+                    <textarea rows="2" class="w-full border-b border-slate-200 focus:border-indigo-500 outline-none resize-none text-sm" placeholder="Details / 详细情况"></textarea>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-slate-200">
+                    <p class="font-bold text-slate-800 mb-1">Cancer / 癌症</p>
+                    <p class="text-xs text-slate-500 mb-3 italic">Was anyone diagnosed with Cancer? What type? / 是否有人患过癌症？什么类型？</p>
+                    <textarea rows="2" class="w-full border-b border-slate-200 focus:border-indigo-500 outline-none resize-none text-sm" placeholder="Type and Who / 癌症类型和成员"></textarea>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-slate-200">
+                    <p class="font-bold text-slate-800 mb-1">Causes of Death / 去世原因</p>
+                    <p class="text-xs text-slate-500 mb-3 italic">Causes of death for our grandparents? / 祖父母/外祖父母的去世原因是什么？</p>
+                    <textarea rows="2" class="w-full border-b border-slate-200 focus:border-indigo-500 outline-none resize-none text-sm" placeholder="Notes / 记录"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Preparation & Interpreter -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div class="card p-6">
                 <h4 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
@@ -158,9 +199,9 @@ permalink: /health/
             </div>
         </div>
 
-        <!-- Section 3: Result Capture -->
+        <!-- Section 4: Result Capture -->
         <div class="card p-6 md:p-8 mb-10">
-            <h3 class="text-xl font-bold text-slate-800 mb-2">Results for the "Data Scientist"</h3>
+            <h3 class="text-xl font-bold text-slate-800 mb-2">Results Tracker</h3>
             <p class="text-sm text-slate-500 mb-6 italic">请向医生索要一份结果报告副本，或拍下这些关键数值发给我。</p>
             
             <div class="space-y-4">
@@ -189,7 +230,7 @@ permalink: /health/
                 <i class="fas fa-print mr-2"></i> Print or Save as PDF
             </button>
             <p class="mt-6 text-slate-400 text-xs tracking-wide">
-                Built for my parents in Australia • 2024
+                Family Medical History Portal • 2024
             </p>
         </footer>
     </div>
