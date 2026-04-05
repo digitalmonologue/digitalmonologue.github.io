@@ -70,18 +70,22 @@ title: Steven's Last Day in SF (Fifth of April 2026)
         </div>
     </header>
 
-    <main class="flex-1 flex flex-col md:flex-row overflow-hidden relative">
-        <!-- Sidebar -->
-        <div id="sidebar" class="w-full md:w-[420px] bg-white border-r flex flex-col z-20 shadow-2xl transition-transform duration-300 overflow-hidden">
+    <main class="flex-1 flex overflow-hidden relative">
+        <!-- Sidebar: Hidden by default on mobile via -translate-x-full, relative on desktop -->
+        <div id="sidebar" class="fixed inset-y-0 left-0 z-20 w-[85%] md:w-[420px] bg-white border-r flex flex-col shadow-2xl transition-transform duration-300 transform -translate-x-full md:relative md:translate-x-0 overflow-hidden">
             
             <div id="active-card" class="shrink-0 p-8 bg-indigo-50 border-b border-indigo-100">
+                <!-- Close button for mobile -->
+                <button onclick="toggleSidebar()" class="md:hidden absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+
                 <div id="active-category-tag" class="flex items-center gap-2 text-indigo-600 font-bold text-xs uppercase tracking-widest mb-3">
                     <span id="active-id" class="bg-indigo-600 text-white w-5 h-5 rounded-md flex items-center justify-center text-[10px]">1</span>
                     <span id="active-category-label">History & Nature</span>
                 </div>
                 <h2 id="active-name" class="text-3xl font-black text-slate-800 mb-2 leading-tight tracking-tight">Mission Dolores Park</h2>
                 
-                <!-- Address & Directions Link -->
                 <div class="flex items-center gap-2 mb-4">
                     <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-400"></i>
                     <p id="active-address" class="text-xs text-slate-500 font-medium"></p>
@@ -126,9 +130,11 @@ title: Steven's Last Day in SF (Fifth of April 2026)
             </div>
         </div>
 
-        <div class="flex-1 relative">
+        <!-- Map Container: Flex-1 ensures it fills available space -->
+        <div class="flex-1 relative h-full">
             <div id="map"></div>
-            <button onclick="toggleSidebar()" class="md:hidden absolute bottom-6 left-6 z-[1000] bg-indigo-600 text-white p-4 rounded-full shadow-2xl">
+            <!-- Toggle Sidebar Button for Mobile -->
+            <button onclick="toggleSidebar()" class="md:hidden absolute bottom-6 left-6 z-[1000] bg-indigo-600 text-white p-4 rounded-full shadow-2xl transition-transform active:scale-95">
                 <i data-lucide="list" id="sidebar-icon"></i>
             </button>
         </div>
@@ -148,120 +154,20 @@ title: Steven's Last Day in SF (Fifth of April 2026)
         };
 
         const TOUR_STOPS = [
-            { 
-                id: 1, 
-                name: "16th and Hoff Garage", 
-                address: "42 Hoff St, San Francisco, CA 94110",
-                gmaps: "https://www.google.com/maps/search/?api=1&query=16th+and+Hoff+Garage+42+Hoff+St+San+Francisco+CA+94110",
-                coords: [37.7651, -122.4218], 
-                type: "Parking", 
-                description: "Convenient parking for the northern end of the tour.", 
-                facts: ["Located just off the 16th St corridor.", "Good starting point for those arriving from the North."], 
-                category: "Arrival" 
-            },
-            { 
-                id: 2, 
-                name: "Mission Dolores Park", 
-                address: "Dolores St & 19th St, San Francisco, CA 94114",
-                gmaps: "https://www.google.com/maps/search/?api=1&query=Mission+Dolores+Park+San+Francisco+CA+94114",
-                coords: [37.7596, -122.4269], 
-                type: "Park", 
-                description: "Iconic park with the best skyline views in the Mission.", 
-                facts: ["Site of the 1906 refugee camp.", "Check out the Golden Fire Hydrant at 20th and Church."], 
-                category: "Leisure" 
-            },
-            { 
-                id: 3, 
-                name: "Tartine Bakery", 
-                address: "600 Guerrero St, San Francisco, CA 94110",
-                gmaps: "https://www.google.com/maps/search/?api=1&query=Tartine+Bakery+600+Guerrero+St+San+Francisco+CA+94110",
-                coords: [37.7614, -122.4243], 
-                type: "Food", 
-                description: "World-famous pastries and rustic sourdough.", 
-                facts: ["Line usually moves faster than it looks.", "The morning bun is the essential order."], 
-                category: "Eats" 
-            },
-            { 
-                id: 4, 
-                name: "Buck Mason", 
-                address: "766 Valencia St, San Francisco, CA 94110",
-                gmaps: "https://www.google.com/maps/search/?api=1&query=Buck+Mason+766+Valencia+St+San+Francisco+CA+94110",
-                coords: [37.7602, -122.4214], 
-                type: "Retail", 
-                description: "Minimalist American essentials and high-quality basics.", 
-                facts: ["Focus on 'Venice Wash' fabrics.", "Similar transparent ethos to Everlane."], 
-                category: "Shopping" 
-            },
-            { 
-                id: 5, 
-                name: "Paxton Gate", 
-                address: "824 Valencia St, San Francisco, CA 94110",
-                gmaps: "https://www.google.com/maps/search/?api=1&query=Paxton+Gate+824+Valencia+St+San+Francisco+CA+94110",
-                coords: [37.7606, -122.4214], 
-                type: "Retail", 
-                description: "A curiosity shop of natural wonders and taxidermy.", 
-                facts: ["Ethically sourced specimens.", "Great for unique home decor."], 
-                category: "Curiosities" 
-            },
-            { 
-                id: 6, 
-                name: "City Art Cooperative", 
-                address: "828 Valencia St, San Francisco, CA 94110",
-                gmaps: "https://www.google.com/maps/search/?api=1&query=City+Art+Cooperative+828+Valencia+St+San+Francisco+CA+94110",
-                coords: [37.7607, -122.4214], 
-                type: "Art", 
-                description: "Artist-owned gallery showcasing local SF creators.", 
-                facts: ["Check out the local zines near the front.", "Exhibits change monthly."], 
-                category: "Art" 
-            },
-            { 
-                id: 7, 
-                name: "Mission: Comics & Art", 
-                address: "2250 Mission St, San Francisco, CA 94110",
-                gmaps: "https://www.google.com/maps/search/?api=1&query=Mission+Comics+and+Art+2250+Mission+St+San+Francisco+CA+94110",
-                coords: [37.7617, -122.4192], 
-                type: "Books/Art", 
-                description: "Indie zines and graphic novels with an art gallery.", 
-                facts: ["A hub for the local zine community.", "Located on the historic Mission St corridor."], 
-                category: "Culture" 
-            },
-            { 
-                id: 8, 
-                name: "Mission Bartlett Garage", 
-                address: "3255 21st St, San Francisco, CA 94110",
-                gmaps: "https://www.google.com/maps/search/?api=1&query=Mission+Bartlett+Garage+3255+21st+St+San+Francisco+CA+94110",
-                coords: [37.7567, -122.4195], 
-                type: "Parking", 
-                description: "Public garage centrally located near Valencia and 21st.", 
-                facts: ["Closest parking to Gravel & Gold.", "Often has more capacity than street parking."], 
-                category: "Parking" 
-            },
-            { 
-                id: 9, 
-                name: "Gravel & Gold", 
-                address: "3266 21st St, San Francisco, CA 94110",
-                gmaps: "https://www.google.com/maps/search/?api=1&query=Gravel+and+Gold+3266+21st+St+San+Francisco+CA+94110",
-                coords: [37.7567, -122.4212], 
-                type: "Retail", 
-                description: "Independent design collective and textile workshop.", 
-                facts: ["Home of the famous 'Boobs' print.", "Showcases independent makers."], 
-                category: "Shopping" 
-            },
-            { 
-                id: 10, 
-                name: "California Parking", 
-                address: "2351 Mission St, San Francisco, CA 94110",
-                gmaps: "https://www.google.com/maps/search/?api=1&query=California+Parking+2351+Mission+St+San+Francisco+CA+94110",
-                coords: [37.7597, -122.4192], 
-                type: "Parking", 
-                description: "24/7 parking lot located right on Mission Street.", 
-                facts: ["Reliable 24-hour access.", "Good backup if other garages are full."], 
-                category: "Parking" 
-            }
+            { id: 1, name: "16th and Hoff Garage", address: "42 Hoff St, San Francisco, CA 94110", gmaps: "https://www.google.com/maps/search/?api=1&query=16th+and+Hoff+Garage+42+Hoff+St+San+Francisco+CA+94110", coords: [37.7651, -122.4218], type: "Parking", description: "Convenient parking for the northern end of the tour.", facts: ["Located just off the 16th St corridor.", "Good starting point for those arriving from the North."], category: "Arrival" },
+            { id: 2, name: "Mission Dolores Park", address: "Dolores St & 19th St, San Francisco, CA 94114", gmaps: "https://www.google.com/maps/search/?api=1&query=Mission+Dolores+Park+San+Francisco+CA+94114", coords: [37.7596, -122.4269], type: "Park", description: "Iconic park with the best skyline views in the Mission.", facts: ["Site of the 1906 refugee camp.", "Check out the Golden Fire Hydrant at 20th and Church."], category: "Leisure" },
+            { id: 3, name: "Tartine Bakery", address: "600 Guerrero St, San Francisco, CA 94110", gmaps: "https://www.google.com/maps/search/?api=1&query=Tartine+Bakery+600+Guerrero+St+San+Francisco+CA+94110", coords: [37.7614, -122.4243], type: "Food", description: "World-famous pastries and rustic sourdough.", facts: ["Line usually moves faster than it looks.", "The morning bun is the essential order."], category: "Eats" },
+            { id: 4, name: "Buck Mason", address: "766 Valencia St, San Francisco, CA 94110", gmaps: "https://www.google.com/maps/search/?api=1&query=Buck+Mason+766+Valencia+St+San+Francisco+CA+94110", coords: [37.7602, -122.4214], type: "Retail", description: "Minimalist American essentials and high-quality basics.", facts: ["Focus on 'Venice Wash' fabrics.", "Similar transparent ethos to Everlane."], category: "Shopping" },
+            { id: 5, name: "Paxton Gate", address: "824 Valencia St, San Francisco, CA 94110", gmaps: "https://www.google.com/maps/search/?api=1&query=Paxton+Gate+824+Valencia+St+San+Francisco+CA+94110", coords: [37.7606, -122.4214], type: "Retail", description: "A curiosity shop of natural wonders and taxidermy.", facts: ["Ethically sourced specimens.", "Great for unique home decor."], category: "Curiosities" },
+            { id: 6, name: "City Art Cooperative", address: "828 Valencia St, San Francisco, CA 94110", gmaps: "https://www.google.com/maps/search/?api=1&query=City+Art+Cooperative+828+Valencia+St+San+Francisco+CA+94110", coords: [37.7607, -122.4214], type: "Art", description: "Artist-owned gallery showcasing local SF creators.", facts: ["Check out the local zines near the front.", "Exhibits change monthly."], category: "Art" },
+            { id: 7, name: "Mission: Comics & Art", address: "2250 Mission St, San Francisco, CA 94110", gmaps: "https://www.google.com/maps/search/?api=1&query=Mission+Comics+and+Art+2250+Mission+St+San+Francisco+CA+94110", coords: [37.7617, -122.4192], type: "Books/Art", description: "Indie zines and graphic novels with an art gallery.", facts: ["A hub for the local zine community.", "Located on the historic Mission St corridor."], category: "Culture" },
+            { id: 8, name: "Mission Bartlett Garage", address: "3255 21st St, San Francisco, CA 94110", gmaps: "https://www.google.com/maps/search/?api=1&query=Mission+Bartlett+Garage+3255+21st+St+San+Francisco+CA+94110", coords: [37.7567, -122.4195], type: "Parking", description: "Public garage centrally located near Valencia and 21st.", facts: ["Closest parking to Gravel & Gold.", "Often has more capacity than street parking."], category: "Parking" },
+            { id: 9, name: "Gravel & Gold", address: "3266 21st St, San Francisco, CA 94110", gmaps: "https://www.google.com/maps/search/?api=1&query=Gravel+and+Gold+3266+21st+St+San+Francisco+CA+94110", coords: [37.7567, -122.4212], type: "Retail", description: "Independent design collective and textile workshop.", facts: ["Home of the famous 'Boobs' print.", "Showcases independent makers."], category: "Shopping" },
+            { id: 10, name: "California Parking", address: "2351 Mission St, San Francisco, CA 94110", gmaps: "https://www.google.com/maps/search/?api=1&query=California+Parking+2351+Mission+St+San+Francisco+CA+94110", coords: [37.7597, -122.4192], type: "Parking", description: "24/7 parking lot located right on Mission Street.", facts: ["Reliable 24-hour access.", "Good backup if other garages are full."], category: "Parking" }
         ];
 
         let map, activeStop = TOUR_STOPS[0], markers = {}, routePolyline = null;
-        let currentView = 'explore';
+        let isSidebarOpen = false; // Closed by default on mobile
 
         function createCustomIcon(stop, isActive) {
             const style = CATEGORY_STYLES[stop.type] || CATEGORY_STYLES["Parking"];
@@ -286,11 +192,18 @@ title: Steven's Last Day in SF (Fifth of April 2026)
                 const marker = L.marker(stop.coords, { 
                     icon: createCustomIcon(stop, stop.id === activeStop.id) 
                 }).addTo(map);
-                marker.on('click', () => setActiveStop(stop.id));
+                marker.on('click', () => {
+                    setActiveStop(stop.id);
+                    // Open sidebar on mobile when a marker is clicked
+                    if (window.innerWidth < 768 && !isSidebarOpen) toggleSidebar();
+                });
                 markers[stop.id] = marker;
             });
 
             renderUI();
+            
+            // Force Leaflet to check container size after initial load
+            setTimeout(() => { map.invalidateSize(); }, 200);
         }
 
         function setActiveStop(id) {
@@ -305,7 +218,6 @@ title: Steven's Last Day in SF (Fifth of April 2026)
         }
 
         function setView(view) {
-            currentView = view;
             document.getElementById('btn-explore').className = view === 'explore' ? 'px-5 py-1.5 rounded-full text-sm font-semibold bg-white shadow-sm text-indigo-600' : 'px-5 py-1.5 rounded-full text-sm font-semibold text-slate-500';
             document.getElementById('btn-route').className = view === 'route' ? 'px-5 py-1.5 rounded-full text-sm font-semibold bg-white shadow-sm text-indigo-600' : 'px-5 py-1.5 rounded-full text-sm font-semibold text-slate-500';
 
@@ -332,7 +244,7 @@ title: Steven's Last Day in SF (Fifth of April 2026)
             document.getElementById('stops-list').innerHTML = TOUR_STOPS.map(stop => {
                 const style = CATEGORY_STYLES[stop.type] || CATEGORY_STYLES["Parking"];
                 return `
-                <button onclick="setActiveStop(${stop.id})" class="w-full text-left p-4 rounded-2xl border-2 flex items-center gap-4 transition-all duration-200 ${activeStop.id === stop.id ? 'border-indigo-600 bg-white ring-4 ring-indigo-50 shadow-md' : 'border-transparent bg-slate-50 hover:bg-white text-slate-600'}">
+                <button onclick="setActiveStop(${stop.id}); if(window.innerWidth < 768) toggleSidebar();" class="w-full text-left p-4 rounded-2xl border-2 flex items-center gap-4 transition-all duration-200 ${activeStop.id === stop.id ? 'border-indigo-600 bg-white ring-4 ring-indigo-50 shadow-md' : 'border-transparent bg-slate-50 hover:bg-white text-slate-600'}">
                     <div class="p-2.5 rounded-xl transition-colors duration-200" style="background-color: ${activeStop.id === stop.id ? style.color : '#fff'}; color: ${activeStop.id === stop.id ? '#fff' : style.color};">
                         <i data-lucide="${style.icon}" class="w-5 h-5"></i>
                     </div>
@@ -345,15 +257,27 @@ title: Steven's Last Day in SF (Fifth of April 2026)
             lucide.createIcons();
         }
 
-        let isSidebarOpen = true;
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('-translate-x-full');
+            const icon = document.getElementById('sidebar-icon');
+            
+            if (isSidebarOpen) {
+                sidebar.classList.add('-translate-x-full');
+            } else {
+                sidebar.classList.remove('-translate-x-full');
+            }
             isSidebarOpen = !isSidebarOpen;
+            
+            // Recalculate map size if desktop layout shifts
+            if (window.innerWidth >= 768) {
+                setTimeout(() => { map.invalidateSize(); }, 350);
+            }
+            
             lucide.createIcons();
         }
 
         window.onload = initMap;
+        window.onresize = () => { map.invalidateSize(); };
     </script>
 </body>
 </html>
