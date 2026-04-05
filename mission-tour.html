@@ -1,0 +1,246 @@
+---
+layout: null
+title: Steven's Last Day in SF (Fifth of April 2026)
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steven's Last Day in SF (Fifth of April 2026)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        #map { height: 100%; width: 100%; z-index: 1; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .leaflet-popup-content-wrapper { border-radius: 12px; padding: 5px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        
+        /* Custom Marker Styles */
+        .custom-marker {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .marker-active {
+            transform: scale(1.35) translateY(-5px);
+            border-color: #4f46e5;
+            z-index: 1000 !important;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .icon-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 h-screen flex flex-col overflow-hidden">
+
+    <header class="bg-white border-b px-6 py-4 flex justify-between items-center z-10 shadow-sm shrink-0">
+        <div class="flex items-center gap-3">
+            <a href="/" class="hover:opacity-75 transition-opacity">
+                <div class="bg-indigo-600 p-2 rounded-xl text-white shadow-lg shadow-indigo-200">
+                    <i data-lucide="map" class="w-6 h-6"></i>
+                </div>
+            </a>
+            <div>
+                <h1 class="text-xl font-extrabold tracking-tight text-slate-800 uppercase italic">Steven's Last Day in SF</h1>
+                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em]">Fifth of April 2026 • Mission District</p>
+            </div>
+        </div>
+        
+        <div class="flex bg-slate-100 p-1 rounded-full border">
+            <button id="btn-explore" onclick="setView('explore')" class="px-5 py-1.5 rounded-full text-sm font-semibold transition-all bg-white shadow-sm text-indigo-600">
+                Explore
+            </button>
+            <button id="btn-route" onclick="setView('route')" class="px-5 py-1.5 rounded-full text-sm font-semibold transition-all text-slate-500 hover:text-slate-700">
+                Route
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 flex flex-col md:flex-row overflow-hidden relative">
+        <!-- Sidebar -->
+        <div id="sidebar" class="w-full md:w-[420px] bg-white border-r flex flex-col z-20 shadow-2xl transition-transform duration-300 overflow-hidden">
+            
+            <div id="active-card" class="shrink-0 p-8 bg-indigo-50 border-b border-indigo-100">
+                <div id="active-category-tag" class="flex items-center gap-2 text-indigo-600 font-bold text-xs uppercase tracking-widest mb-3">
+                    <span id="active-id" class="bg-indigo-600 text-white w-5 h-5 rounded-md flex items-center justify-center text-[10px]">1</span>
+                    <span id="active-category-label">History & Nature</span>
+                </div>
+                <h2 id="active-name" class="text-3xl font-black text-slate-800 mb-3 leading-tight tracking-tight">Mission Dolores Park</h2>
+                <p id="active-desc" class="text-slate-600 leading-relaxed mb-6 text-sm">The neighborhood's 'living room' with world-class views of the SF skyline.</p>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start gap-3">
+                        <div class="p-2 bg-indigo-100 rounded-lg text-indigo-600 flex-shrink-0">
+                            <i data-lucide="history" class="w-4 h-4"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Itinerary Notes</h4>
+                            <ul id="active-facts" class="space-y-3"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-y-auto custom-scrollbar p-6">
+                <h3 class="text-[10px] font-bold text-slate-400 uppercase mb-6 tracking-[0.2em]">The Final Itinerary</h3>
+                <div id="stops-list" class="space-y-3"></div>
+            </div>
+
+            <div class="p-5 bg-slate-900 text-white">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="text-[10px] text-slate-400 uppercase font-bold tracking-widest mb-1">Total Route</div>
+                        <div class="text-xl font-mono font-bold text-indigo-400">~2.1 Miles</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-[10px] text-slate-400 uppercase font-bold tracking-widest mb-1">Today's Date</div>
+                        <div class="text-xl font-mono font-bold text-indigo-400">04.05.2026</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-1 relative">
+            <div id="map"></div>
+            <button onclick="toggleSidebar()" class="md:hidden absolute bottom-6 left-6 z-[1000] bg-indigo-600 text-white p-4 rounded-full shadow-2xl">
+                <i data-lucide="list" id="sidebar-icon"></i>
+            </button>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        const CATEGORY_STYLES = {
+            "Park": { color: "#10b981", icon: "tree-pine" },
+            "Food": { color: "#f59e0b", icon: "coffee" },
+            "Retail": { color: "#ec4899", icon: "shopping-bag" },
+            "Art": { color: "#8b5cf6", icon: "palette" },
+            "Books/Art": { color: "#3b82f6", icon: "book-open" },
+            "Parking": { color: "#64748b", icon: "car" }
+        };
+
+        const TOUR_STOPS = [
+            { id: 1, name: "16th and Hoff Garage", coords: [37.7651, -122.4218], type: "Parking", description: "Convenient parking for the northern end of the tour.", facts: ["Located just off the 16th St corridor.", "Good starting point for those arriving from the North."], category: "Arrival" },
+            { id: 2, name: "Mission Dolores Park", coords: [37.7596, -122.4269], type: "Park", description: "Iconic park with the best skyline views in the Mission.", facts: ["Site of the 1906 refugee camp.", "Check out the Golden Fire Hydrant at 20th and Church."], category: "Leisure" },
+            { id: 3, name: "Tartine Bakery", coords: [37.7614, -122.4243], type: "Food", description: "World-famous pastries and rustic sourdough.", facts: ["Line usually moves faster than it looks.", "The morning bun is the essential order."], category: "Eats" },
+            { id: 4, name: "Buck Mason", coords: [37.7602, -122.4214], type: "Retail", description: "Minimalist American essentials and high-quality basics.", facts: ["Focus on 'Venice Wash' fabrics.", "Similar transparent ethos to Everlane."], category: "Shopping" },
+            { id: 5, name: "Paxton Gate", coords: [37.7606, -122.4214], type: "Retail", description: "A curiosity shop of natural wonders and taxidermy.", facts: ["Ethically sourced specimens.", "Great for unique home decor and rare plants."], category: "Curiosities" },
+            { id: 6, name: "City Art Cooperative", coords: [37.7607, -122.4214], type: "Art", description: "Artist-owned gallery showcasing local SF creators.", facts: ["828 Valencia Street.", "Exhibits change monthly."], category: "Art" },
+            { id: 7, name: "Mission: Comics & Art", coords: [37.7617, -122.4192], type: "Books/Art", description: "Indie zines and graphic novels with an art gallery.", facts: ["A hub for the local zine community.", "Located on the historic Mission St corridor."], category: "Culture" },
+            { id: 8, name: "Mission Bartlett Garage", coords: [37.7567, -122.4195], type: "Parking", description: "Public garage centrally located near Valencia and 21st.", facts: ["Closest parking to Gravel & Gold.", "Often has more capacity than street parking."], category: "Parking" },
+            { id: 9, name: "Gravel & Gold", coords: [37.7567, -122.4212], type: "Retail", description: "Independent design collective and textile workshop.", facts: ["Home of the famous 'Boobs' print.", "Showcases independent California makers."], category: "Shopping" },
+            { id: 10, name: "California Parking", coords: [37.7597, -122.4192], type: "Parking", description: "24/7 parking lot located right on Mission Street.", facts: ["Reliable 24-hour access.", "Good backup if other garages are full."], category: "Parking" }
+        ];
+
+        let map, activeStop = TOUR_STOPS[0], markers = {}, routePolyline = null;
+        let currentView = 'explore';
+
+        function createCustomIcon(stop, isActive) {
+            const style = CATEGORY_STYLES[stop.type] || CATEGORY_STYLES["Parking"];
+            const size = isActive ? 44 : 32;
+            const className = isActive ? "custom-marker marker-active" : "custom-marker";
+            
+            return L.divIcon({
+                html: `<div class="icon-container" style="background-color: ${style.color};">
+                        <i data-lucide="${style.icon}" style="width: ${isActive ? 24 : 18}px; height: ${isActive ? 24 : 18}px;"></i>
+                       </div>`,
+                className: className,
+                iconSize: [size, size],
+                iconAnchor: [size/2, size/2]
+            });
+        }
+
+        function initMap() {
+            map = L.map('map', { zoomControl: false }).setView(activeStop.coords, 15);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', { attribution: '&copy; CARTO' }).addTo(map);
+
+            TOUR_STOPS.forEach(stop => {
+                const marker = L.marker(stop.coords, { 
+                    icon: createCustomIcon(stop, stop.id === activeStop.id) 
+                }).addTo(map);
+                marker.on('click', () => setActiveStop(stop.id));
+                markers[stop.id] = marker;
+            });
+
+            renderUI();
+        }
+
+        function setActiveStop(id) {
+            const oldId = activeStop.id;
+            activeStop = TOUR_STOPS.find(s => s.id === id);
+            
+            if (markers[oldId]) markers[oldId].setIcon(createCustomIcon(TOUR_STOPS.find(s => s.id === oldId), false));
+            if (markers[id]) markers[id].setIcon(createCustomIcon(activeStop, true));
+
+            map.flyTo(activeStop.coords, 16, { duration: 1.5 });
+            renderUI();
+        }
+
+        function setView(view) {
+            currentView = view;
+            document.getElementById('btn-explore').className = view === 'explore' ? 'px-5 py-1.5 rounded-full text-sm font-semibold bg-white shadow-sm text-indigo-600' : 'px-5 py-1.5 rounded-full text-sm font-semibold text-slate-500';
+            document.getElementById('btn-route').className = view === 'route' ? 'px-5 py-1.5 rounded-full text-sm font-semibold bg-white shadow-sm text-indigo-600' : 'px-5 py-1.5 rounded-full text-sm font-semibold text-slate-500';
+
+            if (view === 'route') {
+                if (routePolyline) map.removeLayer(routePolyline);
+                // Simple logical route for the map display
+                const routeOrder = [1, 2, 3, 4, 5, 6, 7, 10, 8, 9];
+                const sortedCoords = routeOrder.map(id => TOUR_STOPS.find(s => s.id === id).coords);
+                routePolyline = L.polyline(sortedCoords, { color: '#4f46e5', weight: 4, opacity: 0.5, dashArray: '12, 12' }).addTo(map);
+            } else if (routePolyline) {
+                map.removeLayer(routePolyline);
+            }
+        }
+
+        function renderUI() {
+            document.getElementById('active-id').innerText = activeStop.id;
+            document.getElementById('active-category-label').innerText = activeStop.category;
+            document.getElementById('active-name').innerText = activeStop.name;
+            document.getElementById('active-desc').innerText = activeStop.description;
+            document.getElementById('active-facts').innerHTML = activeStop.facts.map(f => `<li class="text-xs text-slate-700 border-l-2 border-indigo-200 pl-4 italic font-medium">"${f}"</li>`).join('');
+
+            document.getElementById('stops-list').innerHTML = TOUR_STOPS.map(stop => {
+                const style = CATEGORY_STYLES[stop.type] || CATEGORY_STYLES["Parking"];
+                return `
+                <button onclick="setActiveStop(${stop.id})" class="w-full text-left p-4 rounded-2xl border-2 flex items-center gap-4 transition-all duration-200 ${activeStop.id === stop.id ? 'border-indigo-600 bg-white ring-4 ring-indigo-50 shadow-md' : 'border-transparent bg-slate-50 hover:bg-white text-slate-600'}">
+                    <div class="p-2.5 rounded-xl transition-colors duration-200" style="background-color: ${activeStop.id === stop.id ? style.color : '#fff'}; color: ${activeStop.id === stop.id ? '#fff' : style.color};">
+                        <i data-lucide="${style.icon}" class="w-5 h-5"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="font-bold text-sm ${activeStop.id === stop.id ? 'text-indigo-900' : 'text-slate-700'}">${stop.name}</div>
+                        <div class="text-[10px] text-slate-400 font-bold uppercase tracking-tight">${stop.type}</div>
+                    </div>
+                </button>
+            `}).join('');
+            lucide.createIcons();
+        }
+
+        let isSidebarOpen = true;
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('-translate-x-full');
+            isSidebarOpen = !isSidebarOpen;
+            lucide.createIcons();
+        }
+
+        window.onload = initMap;
+    </script>
+</body>
+</html>
