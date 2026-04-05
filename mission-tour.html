@@ -119,8 +119,8 @@ title: Steven's Last Day in SF (Fifth of April 2026)
             <div class="p-5 bg-slate-900 text-white shrink-0">
                 <div class="flex justify-between items-center">
                     <div>
-                        <div class="text-[10px] text-slate-400 uppercase font-bold tracking-widest mb-1">Total Route</div>
-                        <div class="text-xl font-mono font-bold text-indigo-400">~2.1 Miles</div>
+                        <div class="text-[10px] text-slate-400 uppercase font-bold tracking-widest mb-1">Walking Route</div>
+                        <div class="text-xl font-mono font-bold text-indigo-400">~1.2 Miles</div>
                     </div>
                     <div class="text-right">
                         <div class="text-[10px] text-slate-400 uppercase font-bold tracking-widest mb-1">Today's Date</div>
@@ -223,9 +223,17 @@ title: Steven's Last Day in SF (Fifth of April 2026)
 
             if (view === 'route') {
                 if (routePolyline) map.removeLayer(routePolyline);
-                const routeOrder = [1, 2, 3, 4, 5, 6, 7, 10, 8, 9];
+                
+                // Walking route order excluding parking garages (IDs 1, 8, 10)
+                const routeOrder = [2, 3, 4, 5, 6, 7, 9];
                 const sortedCoords = routeOrder.map(id => TOUR_STOPS.find(s => s.id === id).coords);
-                routePolyline = L.polyline(sortedCoords, { color: '#4f46e5', weight: 4, opacity: 0.5, dashArray: '12, 12' }).addTo(map);
+                
+                routePolyline = L.polyline(sortedCoords, { 
+                    color: '#4f46e5', 
+                    weight: 4, 
+                    opacity: 0.5, 
+                    dashArray: '12, 12' 
+                }).addTo(map);
             } else if (routePolyline) {
                 map.removeLayer(routePolyline);
             }
